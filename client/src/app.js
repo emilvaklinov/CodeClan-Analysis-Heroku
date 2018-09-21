@@ -1,3 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
+const FormView = require('./views/form_view');
+const ListView = require('./views/list_view');
+const Searches = require('./models/searches');
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  let url = 'http://localhost:3000/api/inputs';
+  const searches = new Searches(url);
+  searches.getData();
+
+  const formElement = document.querySelector('#form');
+  const formView = new FormView(formElement);
+
+  const listElement = document.querySelector('#list');
+  const listView = new ListView(listElement);
+
+
+  formView.bindEvents();
+  listView.bindEvents();
+  searches.bindEvents();
 })
