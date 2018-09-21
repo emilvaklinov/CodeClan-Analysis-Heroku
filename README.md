@@ -22,7 +22,7 @@ We’ve been approached by an organisation that would like the ability to find o
 * Display the analysis on the front end   
 * Explore chart libraries to find other interesting ways to display data on the front end   
    
-### The team
+## The team
 
 Emil Vaklinov   
 Marcin Jerwan   
