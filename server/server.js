@@ -11,10 +11,10 @@ app.use(parser.json());
 
 MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
-    // const db = client.db('name_of_db');
-    // const nameOfCollection = db.collection('name_of_collection');
-    // const nameOfRouter = createRouter(nameOfCollection);
-    // app.use('/api/name_of_main_path', nameOfRouter);
+    const db = client.db('project_tweetdb');
+    const nameOfCollection = db.collection('saved_inputs');
+    const nameOfRouter = createRouter(nameOfCollection);
+    app.use('/api/inputs', nameOfRouter);
   })
   .catch(console.error);
 
