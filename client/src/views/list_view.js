@@ -22,6 +22,22 @@ ListView.prototype.renderOne = function (search) {
   const searchItem = document.createElement('li');
   searchItem.textContent = search.searchTerm;
   this.listElement.appendChild(searchItem);
+
+ const button = this.createDeleteButton(search._id);
+ this.listElement.appendChild(button);
+
 }
+
+ListView.prototype.createDeleteButton = function (listItemId){
+  const deleteButton = document.createElement('button');
+  deleteButton.value = listItemId;
+  deleteButton.addEventListener('click', (event)=>{
+    PubSub.publish('ListView:delete-clicked', event.target.value);
+    
+  })
+  deleteButton.textContent = "delete";
+  return deleteButton
+}
+
 
 module.exports = ListView;

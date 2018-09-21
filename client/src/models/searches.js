@@ -10,6 +10,9 @@ Searches.prototype.bindEvents = function(){
   PubSub.subscribe('FormView:search-term-submitted', (event)=>{
     this.postSearch(event.detail);
   })
+  PubSub.subscribe('ListView:delete-clicked', (event) => {
+    this.deleteSearch(event.detail);
+  })
 }
 
 Searches.prototype.getData = function(){
@@ -27,6 +30,14 @@ Searches.prototype.postSearch = function(search){
       PubSub.publish('Searches:searches-data-loaded', searches);
     })
     .catch(console.error);
+}
+
+Searches.prototype.deleteSearch = function(listItemId){
+this.request.delete(listItemId)
+.then((searches)=> {
+  PubSub.publish('Searches:searches-data-loaded', searches);
+})
+.catch(console.error);
 }
 
 
