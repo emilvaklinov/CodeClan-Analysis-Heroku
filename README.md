@@ -42,11 +42,9 @@ export GROUP_PROJECT_TWITTER_CONSUMER_KEY=???
 export GROUP_PROJECT_TWITTER_CONSUMER_SECRET_KEY=???
 ```
 
-Ask one of us for the keys, and replace the question marks with them.
+Ask one of us for the keys, and replace the question marks with them. Remember to save the file!
 
-Remember to save the file!
-
-Close and reopen any tabs that were running the node server, and then check it worked by running:
+Close and reopen any tabs that were running the node server, then check it worked by running:
 
 ```
 set
