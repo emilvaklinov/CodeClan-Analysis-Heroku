@@ -1,27 +1,28 @@
 {
-  "name": "lab_full_stack_bucket_list_end",
+  "name": "project_javascript",
   "version": "1.0.0",
-  "description": "",
-  "main": "server/server.js",
+  "description": "We’ve been approached by an organisation that would like the ability to find out tweet frequency or sentiment by location. We will build a Minimum Viable Product that will retrieve data from Twitter and display it to the user, then explore ways to analyze and display meaningful data in an interesting way.",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "node-geocoder": "^3.22.0",
+    "twit": "^2.2.11",
+    "npm": "^6.4.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server:dev": "nodemon server/server.js",
     "build": "webpack -w"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phael90/project_JavaScript.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^1.17.5",
-    "webpack": "^4.14.0",
-    "webpack-cli": "^3.0.8"
+  "bugs": {
+    "url": "https://github.com/phael90/project_JavaScript/issues"
   },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "mongodb": "^3.1.0",
-    "node-geocoder": "^3.22.0",
-    "twit": "^2.2.11"
-  }
+  "homepage": "https://github.com/phael90/project_JavaScript#readme"
 }
