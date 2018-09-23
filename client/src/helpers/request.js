@@ -2,9 +2,15 @@ const Request = function (url) {
   this.url = url;
 };
 
-Request.prototype.get = function () {
-  return fetch(this.url)
+Request.prototype.get = function (appendToUrl) {
+  console.log("get request", this.url + appendToUrl)
+  if(appendToUrl){
+    return fetch(this.url + appendToUrl)
     .then((response) => response.json());
+  } else {
+    return fetch(this.url)
+    .then((response) => response.json());
+  }
 };
 
 Request.prototype.post = function (payload) {

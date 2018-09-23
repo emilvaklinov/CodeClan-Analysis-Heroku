@@ -10,7 +10,8 @@ const Searches = function(url){
 Searches.prototype.bindEvents = function(){
   PubSub.subscribe('FormView:search-term-submitted', (event)=>{
     this.postSearch(event.detail);
-    this.getSearchResults(event.detail);
+    this.getSearchResults(event.detail.searchTerm);
+    console.log(event.detail.searchTerm);
   })
   PubSub.subscribe('ListView:delete-clicked', (event) => {
     this.deleteSearch(event.detail);
@@ -25,8 +26,8 @@ Searches.prototype.getData = function(){
   .catch(console.error);
 }
 
-Searches.prototype.getSearchResults = function(){
-  this.APIrequest.get()
+Searches.prototype.getSearchResults = function(searchTerm){
+  this.APIrequest.get(`?query=${searchTerm}`)
     .then((tweets) => {
       PubSub.publish('Searches:tweet-data-loaded', tweets);
     })

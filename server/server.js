@@ -21,7 +21,9 @@ MongoClient.connect('mongodb://localhost:27017')
   .catch(console.error);
 
 app.get('/api/search-results', function (req, res) {
-  twitter.getAllSearchResultsFromLast7DaysForSearchTerm("brexit")
+  let searchTerm = req.query.query;
+  console.log(searchTerm);
+  twitter.getAllSearchResultsFromLast7DaysForSearchTerm(searchTerm)
     .then((data) => {
       res.json(data);
     })

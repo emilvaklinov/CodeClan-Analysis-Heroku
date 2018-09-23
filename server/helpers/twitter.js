@@ -20,7 +20,7 @@ Twitter.prototype.getAllSearchResultsFromLast7DaysForSearchTerm = function (sear
   return new Promise((resolve, reject) => {
     let nextResultsQuery = null;
     let currentPageNumber = 1;
-    const maxPages = 5;
+    const maxPages = 20;
     let allResults = [];
 
     this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, currentPageNumber, maxPages, allResults, resolve, reject);
@@ -43,6 +43,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       });
 
       // allResults.push(tweets);
+      console.log("next results = ", data.search_metadata.next_results);
       if (data.search_metadata.next_results && (currentPageNumber < maxPages)) {
         // set nextResults to the value from the metadata
         nextResultsQuery = data.search_metadata.next_results;
@@ -52,7 +53,9 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       // otherwise, exit now and resolve with the data
       } else {
         //const flattenedResults = allResults.flat(0);
+        console.log("resolving results")
         resolve(allResults);
+        
       }
     });
 };
