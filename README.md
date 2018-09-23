@@ -29,4 +29,17 @@ Marcin Jerwan
 Raphael Ugha   
 Vicky Jackson   
 
+***
 
+## Setup dev environment
+
+We are using the node module Twit to rotate our Twitter access tokens. To make use of Twit, you must set the environment variables for the app in your .bashrc file. If you use plain bash, it's the .bashrc file in your home directory; if you use zsh, its the .zshrc file in your home dirctory.
+
+Open the relevant file and paste the following:
+
+```
+export GROUP_PROJECT_TWITTER_CONSUMER_KEY= ???
+export GROUP_PROJECT_TWITTER_CONSUMER_SECRET_KEY= ???
+```
+
+Ask one of us for the keys, and replace the question marks with them!
