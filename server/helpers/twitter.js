@@ -15,12 +15,20 @@ const Twitter = function () {
 }
 
 //TODO 
-// merge searchTweetsByKeyword and searchTweetsByMetadata and give the resulting method optional params
+// test below method
 
-// query the Twitter search/tweets endpoint with a keyword string as the search parameter
-Twitter.prototype.searchTweetsByKeyword = function (keyword) {
+Twitter.prototype.searchTweetsByKeyword = function (keyword, nextResultsQuery) {
   return new Promise((resolve, reject) => {
-    T.get('search/tweets', { q: keyword + " -filter:retweets", has: "geo", count: 100, exclude: "replies" }, function (err, data, response) {
+    let queryPath = null;
+    let queryOptions = null;
+    if (nextResultsQuery) {
+      queryPath = `search/tweets.json${nextResultsQuery}`;
+      queryOptions = {};
+    } else {
+      queryPath = 'search/tweets';
+      queryOptions = { q: keyword + " -filter:retweets", has: "geo", count: 100, exclude: "replies" };
+    };
+    T.get(queryPath, queryOptions, function (err, data, response) {
       if (!err) {
         resolve(data);
       } else {
@@ -28,21 +36,7 @@ Twitter.prototype.searchTweetsByKeyword = function (keyword) {
       }
     })
   });
-}
-
-// query the Twitter search/tweets endpoint with a metadata value from a data set as the search parameter
-Twitter.prototype.searchTweetsByMetaData = function (metadata) {
-  return new Promise((resolve, reject) => {
-    console.log(`search/tweets.json${metadata}`);
-    T.get(`search/tweets.json${metadata}`, {}, function (err, data, response) {
-      if (!err) {
-        resolve(data);
-      } else {
-        reject(err);
-      }
-    })
-  });
-}
+};
 
 // TODO 
 // refactor this to use a recursive function that waits till each fetch is done before moving to the next
@@ -108,7 +102,7 @@ Twitter.prototype.getAllPagesFromLast7DaysForSearchTerm = function (searchTerm) 
       });
 
 
- 
+
   })
 };
 
