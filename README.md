@@ -42,4 +42,6 @@ export GROUP_PROJECT_TWITTER_CONSUMER_KEY= ???
 export GROUP_PROJECT_TWITTER_CONSUMER_SECRET_KEY= ???
 ```
 
-Ask one of us for the keys, and replace the question marks with them!
+Ask one of us for the keys, and replace the question marks with them.
+
+Remember to save the file!
