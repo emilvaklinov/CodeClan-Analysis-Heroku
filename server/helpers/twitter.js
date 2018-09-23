@@ -14,6 +14,9 @@ const Twitter = function () {
 
 }
 
+//TODO 
+// merge searchTweetsByKeyword and searchTweetsByMetadata and give the resulting method optional params
+
 // query the Twitter search/tweets endpoint with a keyword string as the search parameter
 Twitter.prototype.searchTweetsByKeyword = function (keyword) {
   return new Promise((resolve, reject) => {
@@ -40,6 +43,10 @@ Twitter.prototype.searchTweetsByMetaData = function (metadata) {
     })
   });
 }
+
+// TODO 
+// refactor this to use a recursive function that waits till each fetch is done before moving to the next
+// as currently this has some asynchronous issues
 
 Twitter.prototype.getAllPagesFromLast7DaysForSearchTerm = function (searchTerm) {
   let nextResultsQueryParam = null;
