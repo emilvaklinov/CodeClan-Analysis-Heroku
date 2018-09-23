@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const formView = new FormView(formElement);
 
   const listElement = document.querySelector('#list');
-  const listView = new ListView(listElement);
+  const searchResultsListElement = document.querySelector('#search-results-list');
+  const listView = new ListView(listElement, searchResultsListElement);
 
 
   formView.bindEvents();

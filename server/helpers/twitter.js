@@ -35,7 +35,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       // and the we're definately not on the last page
       // add the data so far to allResults
       const tweets = data.statuses.map(tweet => {
-        return { text: tweet.text, location: tweet.user.location, place: tweet.place, coords: tweet.coordinates }
+        return { text: tweet.full_text, location: tweet.user.location, place: tweet.place, coords: tweet.coordinates }
       });
 
       tweets.forEach((tweet) => {
@@ -48,12 +48,9 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
         nextResultsQuery = data.search_metadata.next_results;
         let nextPageNumber = currentPageNumber + 1;
         // call this method recursively with the new values from the first call
-        this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, nextPageNumber, maxPages, allResults, resolve, reject);
-        console.log("next call: " + "current page: " + currentPageNumber + " " + " " + "all results: " + " " + allResults)
-      
+        this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, nextPageNumber, maxPages, allResults, resolve, reject);      
       // otherwise, exit now and resolve with the data
       } else {
-        console.log("last call: " + "current page: " + currentPageNumber + " " + " " + "all results: " + " " + allResults)
         //const flattenedResults = allResults.flat(0);
         resolve(allResults);
       }
@@ -64,12 +61,14 @@ Twitter.prototype.makeSearchTweetsRequestToTwitterWithSearchTerm = function (sea
   return new Promise((resolve, reject) => {
     let queryPath = null;
     let queryOptions = null;
+    
     if (nextResultsQuery) {
-      queryPath = `search/tweets.json${nextResultsQuery}`;
-      queryOptions = {};
+      queryPath = `https://api.twitter.com/1.1/search/tweets.json${nextResultsQuery}&tweet_mode=extended`;
+      queryOptions = { };
+      console.log(queryPath);
     } else {
       queryPath = 'search/tweets';
-      queryOptions = { q: searchTerm + " -filter:retweets", has: "geo", count: 100, exclude: "replies" };
+      queryOptions = { q: searchTerm + " -filter:retweets", has: "geo", count: 100, exclude: "replies", tweet_mode: "extended"};
     };
     T.get(queryPath, queryOptions, (err, data, response) => {
       if (!err) {

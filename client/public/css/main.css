@@ -1,0 +1,19 @@
+body {
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 18px;
+  color: black;
+}
+
+#form-container {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+#result-container {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+h2 {
+  font-size: 18px;
+}
