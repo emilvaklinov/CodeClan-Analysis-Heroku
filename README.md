@@ -38,10 +38,16 @@ We are using the node module [Twit](https://www.npmjs.com/package/twit) to rotat
 Open the relevant file and paste the following:
 
 ```
-export GROUP_PROJECT_TWITTER_CONSUMER_KEY= ???
-export GROUP_PROJECT_TWITTER_CONSUMER_SECRET_KEY= ???
+export GROUP_PROJECT_TWITTER_CONSUMER_KEY=???
+export GROUP_PROJECT_TWITTER_CONSUMER_SECRET_KEY=???
 ```
 
 Ask one of us for the keys, and replace the question marks with them.
 
 Remember to save the file!
+
+Close and reopen any tabs that were running the node server, and then check it worked by running:
+
+```
+set
+```
