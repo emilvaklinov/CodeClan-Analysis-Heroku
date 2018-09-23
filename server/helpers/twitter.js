@@ -14,10 +14,53 @@ const Twitter = function () {
 
 }
 
-//TODO 
-// test below method
+// This is the method to call from the outside
+Twitter.prototype.getAllSearchResultsFromLast7DaysForSearchTerm = function (searchTerm) {
+  // retrieve the first data set
+  return new Promise((resolve, reject) => {
+    let nextResultsQuery = null;
+    let currentPageNumber = 1;
+    const maxPages = 5;
+    let allResults = [];
 
-Twitter.prototype.searchTweetsByKeyword = function (keyword, nextResultsQuery) {
+    this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, currentPageNumber, maxPages, allResults, resolve, reject);
+  });
+};
+
+Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, nextResultsQuery, currentPageNumber, maxPages, allResults, resolve, reject) {
+  // nextResultQuery is null the first time round
+  this.makeSearchTweetsRequestToTwitterWithSearchTerm(searchTerm, nextResultsQuery)
+    .then((data) => {
+      // if the data has next_results (i.e. it is not the last page)
+      // and the we're definately not on the last page
+      // add the data so far to allResults
+      const tweets = data.statuses.map(tweet => {
+        return { text: tweet.text, location: tweet.user.location, place: tweet.place, coords: tweet.coordinates }
+      });
+
+      tweets.forEach((tweet) => {
+        allResults.push(tweet);
+      });
+
+      // allResults.push(tweets);
+      if (data.search_metadata.next_results && (currentPageNumber < maxPages)) {
+        // set nextResults to the value from the metadata
+        nextResultsQuery = data.search_metadata.next_results;
+        let nextPageNumber = currentPageNumber + 1;
+        // call this method recursively with the new values from the first call
+        this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, nextPageNumber, maxPages, allResults, resolve, reject);
+        console.log("next call: " + "current page: " + currentPageNumber + " " + " " + "all results: " + " " + allResults)
+      
+      // otherwise, exit now and resolve with the data
+      } else {
+        console.log("last call: " + "current page: " + currentPageNumber + " " + " " + "all results: " + " " + allResults)
+        //const flattenedResults = allResults.flat(0);
+        resolve(allResults);
+      }
+    });
+};
+
+Twitter.prototype.makeSearchTweetsRequestToTwitterWithSearchTerm = function (searchTerm, nextResultsQuery) {
   return new Promise((resolve, reject) => {
     let queryPath = null;
     let queryOptions = null;
@@ -26,9 +69,9 @@ Twitter.prototype.searchTweetsByKeyword = function (keyword, nextResultsQuery) {
       queryOptions = {};
     } else {
       queryPath = 'search/tweets';
-      queryOptions = { q: keyword + " -filter:retweets", has: "geo", count: 100, exclude: "replies" };
+      queryOptions = { q: searchTerm + " -filter:retweets", has: "geo", count: 100, exclude: "replies" };
     };
-    T.get(queryPath, queryOptions, function (err, data, response) {
+    T.get(queryPath, queryOptions, (err, data, response) => {
       if (!err) {
         resolve(data);
       } else {
@@ -37,74 +80,5 @@ Twitter.prototype.searchTweetsByKeyword = function (keyword, nextResultsQuery) {
     })
   });
 };
-
-// TODO 
-// refactor this to use a recursive function that waits till each fetch is done before moving to the next
-// as currently this has some asynchronous issues
-
-Twitter.prototype.getAllPagesFromLast7DaysForSearchTerm = function (searchTerm) {
-  let nextResultsQueryParam = null;
-  let allData = [];
-  console.log('empty data ' + allData);
-  // retrieve the first data set
-  return new Promise((resolve, reject) => {
-    this.searchTweetsByKeyword(searchTerm)
-      .then((data) => {
-        const tweets = data.statuses.map(tweet => {
-          //return tweet;
-          return { text: tweet.text, location: tweet.user.location, place: tweet.place, coords: tweet.coordinates }
-        });
-
-        console.log(tweets, "xx");
-
-        allData.push(tweets);
-
-
-
-
-        console.log('first data entry' + allData);
-        // save out the search_metadata.next_results value
-        nextResultsQueryParam = data.search_metadata.next_results;
-        if (!nextResultsQueryParam) {
-          resolve(allData);
-        }
-        let loopCounter = 0;
-        // keep requesting pages of results until you are on the last page
-        // or until 10 requests have been made
-        // check what happens when there are no more pages
-        while (nextResultsQueryParam && loopCounter < 3) {
-          loopCounter += 1;
-          console.log('loop data entry number ' + loopCounter + ' ' + allData);
-          this.searchTweetsByMetaData(nextResultsQueryParam)
-            .then((data) => {
-              const tweets = data.statuses.map(tweet => {
-                return { text: tweet.text, location: tweet.user.location, place: tweet.place }
-              });
-              allData.push(tweets);
-              console.log('add to array' + allData);
-              nextResultsQueryParam = data.search_metadata.next_results;
-              console.log(allData.length)
-              if ((allData.length === 4) || (!nextResultsQueryParam)) {
-                console.log('resolving data ' + allData);
-                resolve(allData);
-              }
-            })
-        }
-
-
-
-
-
-
-
-
-
-      });
-
-
-
-  })
-};
-
 
 module.exports = Twitter;
