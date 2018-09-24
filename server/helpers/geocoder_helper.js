@@ -17,10 +17,12 @@ var geocoder = NodeGeocoder(options);
 GeocoderHelper.prototype.getLocationData = function(tweetLocation){
   return new Promise((resolve, reject) => {
     geocoder.geocode(tweetLocation)
-      .then(function(res) {
+      .then(function(data) {
+        resolve(data);
         console.log(res);
       })
       .catch(function(err) {
+        reject(err);
         console.log(err);
       }) 
     })
