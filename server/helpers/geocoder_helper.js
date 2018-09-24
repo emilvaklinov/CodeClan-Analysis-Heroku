@@ -22,11 +22,10 @@ GeocoderHelper.prototype.getLocationData = function(tweetLocation){
         coords.push(data[0].latitude) 
         coords.push(data[0].longitude) 
         resolve(coords);
-        console.log(res);
       })
       .catch(function(err) {
         reject(err);
-        console.log(err);
+        //console.log(err);
       }) 
     })
   }

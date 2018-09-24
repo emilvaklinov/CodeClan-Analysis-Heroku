@@ -1,4 +1,8 @@
 var Twit = require('twit');
+const GeocoderHelper = require('./geocoder_helper.js');
+const MongoClient = require('mongodb').MongoClient;
+const geocoder = new GeocoderHelper();
+
 
 // instantiate a new Twit object and pass it the consumer key variables
 // set app_only_auth to true so that access tokens are generated before expiring
@@ -22,7 +26,7 @@ Twitter.prototype.getAllSearchResultsFromLast7DaysForSearchTerm = function (sear
     let currentPageNumber = 1;
     const maxPages = 2;
     let allResults = [];
-    
+
     this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, currentPageNumber, maxPages, allResults, resolve, reject);
   });
 };
@@ -49,13 +53,16 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
         nextResultsQuery = data.search_metadata.next_results;
         let nextPageNumber = currentPageNumber + 1;
         // call this method recursively with the new values from the first call
-        this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, nextPageNumber, maxPages, allResults, resolve, reject);      
-      // otherwise, exit now and resolve with the data
+        this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, nextPageNumber, maxPages, allResults, resolve, reject);
+        // otherwise, exit now and resolve with the data
       } else {
         //const flattenedResults = allResults.flat(0);
-        console.log("resolving results")
-        resolve(allResults);
-        
+
+        this.getCoordsForTweets(allResults).then(() => {
+          console.log("resolving results")
+          resolve(allResults);
+        })
+
       }
     });
 };
@@ -64,14 +71,14 @@ Twitter.prototype.makeSearchTweetsRequestToTwitterWithSearchTerm = function (sea
   return new Promise((resolve, reject) => {
     let queryPath = null;
     let queryOptions = null;
-    
+
     if (nextResultsQuery) {
       queryPath = `https://api.twitter.com/1.1/search/tweets.json${nextResultsQuery}&tweet_mode=extended`;
-      queryOptions = { };
+      queryOptions = {};
       console.log(queryPath);
     } else {
       queryPath = 'search/tweets';
-      queryOptions = { q: searchTerm + " -filter:retweets", has: "geo", count: 100, exclude: "replies", tweet_mode: "extended"};
+      queryOptions = { q: searchTerm + " -filter:retweets", has: "geo", count: 100, exclude: "replies", tweet_mode: "extended" };
     };
     T.get(queryPath, queryOptions, (err, data, response) => {
       if (!err) {
@@ -81,6 +88,87 @@ Twitter.prototype.makeSearchTweetsRequestToTwitterWithSearchTerm = function (sea
       }
     })
   });
+};
+
+let locationCollection = null;
+
+MongoClient.connect('mongodb://localhost:27017')
+  .then((client) => {
+    const db = client.db('project_tweetdb');
+    locationCollection = db.collection('locations_coords');
+  })
+  .catch(console.error);
+
+
+// finally works - needs refactored :<
+Twitter.prototype.getCoordsForTweets = function (tweets) {
+
+  const numTweets = tweets.length;
+  let numProcessed = 0;
+
+  return new Promise((resolve, reject) => {
+
+    tweets.forEach((tweet, index) => {
+      let tweetToUpdate = tweets[index];
+      let tweetLocation = tweet.location;
+      locationCollection.findOne({ location: tweetLocation }).then((dbLocation) => {
+        console.log('search result', dbLocation);
+        if (dbLocation && dbLocation.location === tweetLocation) {
+
+          console.log('found in database', tweetLocation);
+
+          tweetToUpdate.latitude = dbLocation.latitude;
+          tweetToUpdate.longitude = dbLocation.longitude;
+          numProcessed += 1;
+
+          if (numProcessed === numTweets) {
+            resolve();
+          }
+
+        } else if (tweetLocation) {
+
+          geocoder.getLocationData(tweetLocation)
+            .then((data) => {
+              console.log('found geocode data for tweet location', data, tweetLocation, index);
+              tweetToUpdate.latitude = data[0];
+              tweetToUpdate.longitude = data[1];
+              numProcessed += 1;
+
+              locationCollection.insertOne({
+                location: tweetLocation,
+                latitude: data[0],
+                longitude: data[1]
+              });
+
+              if (numProcessed === numTweets) {
+                resolve();
+              }
+
+
+            })
+            .catch((err) => {
+              console.log('geocode error', err);
+              numProcessed += 1;
+
+              if (numProcessed === numTweets) {
+                resolve();
+              }
+            });
+
+        } else {
+          // blank location
+          numProcessed += 1;
+
+          if (numProcessed === numTweets) {
+            resolve();
+          }
+
+        }
+
+
+      })
+    })
+  })
 };
 
 module.exports = Twitter;
