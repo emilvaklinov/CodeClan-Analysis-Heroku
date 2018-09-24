@@ -37,7 +37,7 @@ app.get('/api/search-results', function (req, res) {
 app.get('/api/geocoder-results', function (req, res) {
   // if statement to check if location is in DB
   // otherwise make a request to the Geocoder API
-  geocoder.getLocationData('Scotland')
+  geocoder.getLocationData('Brazil')
     .then((data) => {
       console.log(data);
       res.json(data);

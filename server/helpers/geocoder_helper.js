@@ -18,7 +18,10 @@ GeocoderHelper.prototype.getLocationData = function(tweetLocation){
   return new Promise((resolve, reject) => {
     geocoder.geocode(tweetLocation)
       .then(function(data) {
-        resolve(data);
+        const coords = [];
+        coords.push(data[0].latitude) 
+        coords.push(data[0].longitude) 
+        resolve(coords);
         console.log(res);
       })
       .catch(function(err) {
