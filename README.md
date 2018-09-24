@@ -33,7 +33,7 @@ Vicky Jackson
 
 ## Setup dev environment
 
-Out project makes use of the node modules [Twit](https://www.npmjs.com/package/twit) and [Geocoder](https://www.npmjs.com/package/node-geocoder). To make use of Twit, you must set the environment variables for the app in your .bashrc file. If you use plain bash, update the .bashrc file in your home directory; if you use zsh, update the .zshrc file in your home directory.
+Our project makes use of the node modules [Twit](https://www.npmjs.com/package/twit) and [Geocoder](https://www.npmjs.com/package/node-geocoder). To run the project in a dev environment, you must set the environment variables for those libraries in your .bashrc file. If you use plain bash, update the .bashrc file in your home directory; if you use zsh, update the .zshrc file in your home directory.
 
 Open the relevant file and paste the following:
 
