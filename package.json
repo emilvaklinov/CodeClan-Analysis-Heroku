@@ -20,6 +20,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "mapbox-gl": "^0.49.0",
     "mongodb": "^3.1.0",
     "node-geocoder": "^3.22.0",
     "twit": "2.2.11"

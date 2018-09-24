@@ -1,6 +1,7 @@
 const FormView = require('./views/form_view');
 const ListView = require('./views/list_view');
 const Searches = require('./models/searches');
+const MapView = require('./views/map_view');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,9 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const listElement = document.querySelector('#list');
   const searchResultsListElement = document.querySelector('#search-results-list');
   const listView = new ListView(listElement, searchResultsListElement);
-
+  const mapView = new MapView();
 
   formView.bindEvents();
   listView.bindEvents();
   searches.bindEvents();
+  mapView.renderMap();
 })
