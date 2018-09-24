@@ -5,11 +5,13 @@ const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js');
 const Twitter = require('./helpers/twitter.js');
+const GeocoderHelper = require('./helpers/geocoder_helper.js');
 
 const publicPath = path.join(__dirname, '../client/public');
 app.use(express.static(publicPath));
 app.use(parser.json());
 const twitter = new Twitter();
+const geocoder = new GeocoderHelper();
 
 MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
@@ -25,6 +27,17 @@ app.get('/api/search-results', function (req, res) {
   console.log(searchTerm);
   twitter.getAllSearchResultsFromLast7DaysForSearchTerm(searchTerm)
     .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+app.get('/api/geocoder-results', function (req, res) {
+  geocoder.getLocationData('Scotland')
+    .then((data) => {
+      console.log(data);
       res.json(data);
     })
     .catch((err) => {

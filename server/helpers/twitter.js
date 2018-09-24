@@ -20,7 +20,7 @@ Twitter.prototype.getAllSearchResultsFromLast7DaysForSearchTerm = function (sear
   return new Promise((resolve, reject) => {
     let nextResultsQuery = null;
     let currentPageNumber = 1;
-    const maxPages = 20;
+    const maxPages = 5;
     let allResults = [];
 
     this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, currentPageNumber, maxPages, allResults, resolve, reject);
