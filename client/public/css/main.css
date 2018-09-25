@@ -21,7 +21,7 @@ body {
 .navbar {
   grid-area: header;
   height: 5rem;
-  background-color: lightslategray;
+  background-color: #c4114b;
   text-align: right;
 }
 
@@ -46,12 +46,17 @@ body {
 .footer {
   grid-area: footer;
   height: 5rem;
-  background-color: lightslategray;
+  background-color: #58595b;
 }
 
 .content-top-left {
+  margin-top: 2rem;
   margin-right: 2rem;
   width: 33%;
+}
+
+.content-top-left-text {
+  margin-left: 2rem;
 }
 
 #form-container {
@@ -69,14 +74,17 @@ body {
 .search-history button{
   height: 1.3rem;
   width: 1.3rem;
+  vertical-align: middle;
   border: none;
   color: red;
 }
 
 .search-history #list li {
   display: inline-block;
+  height: 1.3rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
+  vertical-align: middle;
 }
 
 #input {
@@ -111,6 +119,7 @@ button#submit {
 
 .search-history {
   margin-left: 2rem;
+  margin-bottom: 2rem;
 }
 
 #map {
@@ -134,6 +143,7 @@ h2 {
 .h2 {
   font-size: 28px;
   margin-bottom: 2rem;
+  font-weight: normal;
 }
 
 .chart-1 {
