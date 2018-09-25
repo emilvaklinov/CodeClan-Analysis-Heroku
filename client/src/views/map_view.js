@@ -11,7 +11,7 @@ var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
     mapboxgl.accessToken = 'pk.eyJ1IjoibS1qZXJ3YW4iLCJhIjoiY2ptZ29pb2UwNGYxbTN3bzJnNTZpc2IzZCJ9.O-ibkJlgtLAeBMMYJOB5Uw';
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v9',
+        style: 'mapbox://styles/mapbox/light-v9',
         center: [-20, 20],
         zoom: 2
     });
@@ -19,22 +19,22 @@ var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
     map.on('load', function () {
         // Add a geojson point source.
         // Heatmap layers also work with a vector tile source.
-        map.addSource('earthquakes', {
+        map.addSource('twitter_test', {
             "type": "geojson",
-            "data": "https://www.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
+            "data": geoJsonTest.negativeTestData()
         });
 
         map.addLayer({
-            "id": "earthquakes-heat",
+            "id": "twitter_test-heat",
             "type": "heatmap",
-            "source": "earthquakes",
+            "source": "twitter_test",
             "maxzoom": 9,
             "paint": {
                 // Increase the heatmap weight based on frequency and property magnitude
                 "heatmap-weight": [
                     "interpolate",
                     ["linear"],
-                    ["get", "mag"],
+                    ["get", "retweets"],
                     0, 0,
                     6, 1
                 ],
@@ -81,9 +81,9 @@ var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
         }, 'waterway-label');
 
         map.addLayer({
-            "id": "earthquakes-point",
+            "id": "twitter_test-point",
             "type": "circle",
-            "source": "earthquakes",
+            "source": "twitter_test",
             "minzoom": 7,
             "paint": {
                 // Size circle radius by earthquake magnitude and zoom level
@@ -94,14 +94,14 @@ var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
                     7, [
                         "interpolate",
                         ["linear"],
-                        ["get", "mag"],
+                        ["get", "retweets"],
                         1, 1,
                         6, 4
                     ],
                     16, [
                         "interpolate",
                         ["linear"],
-                        ["get", "mag"],
+                        ["get", "retweets"],
                         1, 5,
                         6, 50
                     ]
@@ -110,7 +110,7 @@ var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
                 "circle-color": [
                     "interpolate",
                     ["linear"],
-                    ["get", "mag"],
+                    ["get", "retweets"],
                     1, "rgba(33,102,172,0)",
                     2, "rgb(103,169,207)",
                     3, "rgb(209,229,240)",
@@ -131,9 +131,6 @@ var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
             }
         }, 'waterway-label');
     });
-
-
-
 
 }
 
