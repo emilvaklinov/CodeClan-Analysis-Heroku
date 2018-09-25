@@ -14,6 +14,8 @@ GeoJsonTest.prototype.negativeTestData = function () {
         "features": [
 
             { "geometry": { "type": "Point", "coordinates": [-0.111094, 52.509865] } },
+            { "geometry": { "type": "Point", "coordinates": [-0.12766,51.507276] } },
+            { "geometry": { "type": "Point", "coordinates": [-0.221094, 52.509865] } }
         ]
     }
 

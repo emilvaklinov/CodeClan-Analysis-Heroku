@@ -19,8 +19,9 @@ h2 {
 }
 
 #map{
-  height: 40vw;
   margin-bottom: 2rem;
+  height: 50rem;
+  width: 50rem;
 }
 
 input#submit {

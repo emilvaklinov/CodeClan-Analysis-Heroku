@@ -24,7 +24,7 @@ Twitter.prototype.getAllSearchResultsFromLast7DaysForSearchTerm = function (sear
   return new Promise((resolve, reject) => {
     let nextResultsQuery = null;
     let currentPageNumber = 1;
-    const maxPages = 2;
+    const maxPages = 5;
     let allResults = [];
 
     this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, currentPageNumber, maxPages, allResults, resolve, reject);
@@ -39,7 +39,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       // and the we're definately not on the last page
       // add the data so far to allResults
       const tweets = data.statuses.map(tweet => {
-        return { text: tweet.full_text, location: tweet.user.location, place: tweet.place, coords: tweet.coordinates }
+        return { text: tweet.full_text, location: tweet.user.location }
       });
 
       tweets.forEach((tweet) => {
