@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const myChart_1 = echarts.init(document.getElementById('chart_1'));
   const chartView_1 = new ChartView(myChart_1);
-  let testChartData_1 = [20, 100];
-  let chartTitle_1 = "retweets"
-  chartView_1.renderChart(testChartData_1, chartTitle_1);
+  // let testChartData_1 = [20, 100];
+  // let chartTitle_1 = "retweets"
+  // chartView_1.renderChart(testChartData_1, chartTitle_1);
 
 
   const myChart_2 = echarts.init(document.getElementById('chart_2'));
