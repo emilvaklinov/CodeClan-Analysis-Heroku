@@ -36,7 +36,7 @@ console.log('data: ', json);
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v9',
         center: [-20, 20],
-        zoom: 0
+        zoom: 0.65
     });
 
     map.on('load', function () {

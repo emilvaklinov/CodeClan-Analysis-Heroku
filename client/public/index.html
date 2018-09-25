@@ -7,37 +7,73 @@
   <script src="./js/bundle.js"></script>
   <link rel="stylesheet" href="./css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Hind+Madurai:400,500,600,700" rel="stylesheet">
-  <link href='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' /> <!-- MAPBOX  -->
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+  <!-- MAPBOX  -->
   <title>TweetFeels</title>
 </head>
 
 <body>
-  <div id="form-container">
-    <form id="form">
-      <label for="input">Enter a keyword: </label>
-      <input type="text" id="input" name="input">
-      <input type="submit" id="submit" value="Search Twitter">
-    </form>
+  <div class="grid-container">
+
+    <nav class="navbar">
+      <h2>CCCP</h2>
+    </nav>
+
+    <div class="content-top">
+      <!-- start of content-top -->
+      <div class="content-top-left">
+        <div id="form-container">
+
+          <form id="form">
+            <label for="input">Enter a keyword: </label>
+            <input type="text" id="input" name="input">
+            <input type="submit" id="submit" value="Search Twitter">
+          </form>
+
+        </div><br>
+
+        <div class="search-history">
+
+          <h2>Search History: </h2>
+          <ul id="list">
+          </ul>
+
+        </div>
+      </div>
+      <div id='map'></div>
+
+    </div>
+    <!-- end of content-top -->
   </div>
 
-  <div id='map'></div>
+  <!-- start of content-middle -->
+  <div class="content-middle">
+    <!-- <div id='map'></div> -->
+    <div class="chart-1">
+      <h3>Positive vs Negative Retweets</h3>
+      <div class="chart" id="chart_1"></div>
+    </div>
 
-  <div id="result-container">
-    <h2>Search History: </h2>
-    <ul id="list">
-    </ul>
+    <div class="chart-2">
+      <h3>Positive vs Negative Likes</h3>
+      <div class="chart" id="chart_2"></div>
+    </div>
+  </div>
+  <!-- end of content-middle -->
 
+  <!-- start of content-bottom -->
+  <div class="content-bottom" id="result-container">
     <h2>Search Results: </h2>
     <ul id="search-results-list">
     </ul>
   </div>
+  <!-- end of content-bottom -->
+  </div>
+  <!-- start of footer -->
+  <div class="footer">
 
-  <div id='map'></div>
-  <section id="charts_container">
-    <div class="chart" id="chart_1"></div>
-    <div class="chart" id="chart_2"></div>
-    <div class="chart" id="chart_3"></div>
-  </section>
+  </div>
+  <!-- end of footer -->
 </body>
 
 </html>

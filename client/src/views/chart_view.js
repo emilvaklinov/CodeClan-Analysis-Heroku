@@ -7,9 +7,9 @@ const ViewChart = function(myChart_x){
 
 ViewChart.prototype.renderChart = function(testChartData, chartTitle){
   this.myChart_x.setOption({
-    title: {
-      text: chartTitle
-    },
+    // title: {
+    //   text: chartTitle
+    // },
     tooltip: {},
     series: [{
       radius: '50%',
