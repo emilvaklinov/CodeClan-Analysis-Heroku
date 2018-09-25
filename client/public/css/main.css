@@ -10,11 +10,11 @@ body {
   height: 100%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1px 1px;
-  grid-template-areas: 
-  "header" 
-  "content-top" 
-  "content-middle" 
-  "content-bottom" 
+  grid-template-areas:
+  "header"
+  "content-top"
+  "content-middle"
+  "content-bottom"
   "footer";
 }
 
@@ -186,4 +186,13 @@ button {
 .chart div{
   display: inline-block;
   margin-right: 5%;
+}
+
+ul#search-results-list {
+  font-family: fantasy;
+  color: black;
+  background-color: white;
+  background-clip: content-box;
+  padding-left: 150px;
+  padding-right: 250px;
 }
