@@ -20,5 +20,5 @@ document.addEventListener('DOMContentLoaded', () => {
   formView.bindEvents();
   listView.bindEvents();
   searches.bindEvents();
-  mapView.renderMap();
+  mapView.bindEvents();
 })

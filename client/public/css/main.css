@@ -19,5 +19,6 @@ h2 {
 }
 
 #map{
-  height: 40vw;
+  height: 50rem;
+  width: 50rem;
 }

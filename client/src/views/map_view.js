@@ -1,19 +1,42 @@
 const GeoJsonTest = require('../helpers/geoJson_test');
+const PubSub = require('../helpers/pub_sub.js');
 
 const MapView = function(){
 }
 
 const geoJsonTest = new GeoJsonTest();
 
-MapView.prototype.renderMap = function(){
+MapView.prototype.bindEvents = function () {
+    this.renderMap();
+    PubSub.subscribe('Searches:tweet-coordinates-loaded', (event) => {
+        console.log('event', event);
+        this.renderMap(event.detail);
+    });
+  };
+
+MapView.prototype.renderMap = function(coordinates){
 var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+console.log('from inside map: ', coordinates);
+
+const json = {
+    "type": "FeatureCollection",
+        "crs": { 
+            "type": "name", 
+            "properties": { 
+                "title": "testing",
+                "name": "urn:ogc:def:crs:OGC:1.3:CRS84" 
+            } },
+    "features": coordinates
+}
+console.log('data: ', json);
+
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibS1qZXJ3YW4iLCJhIjoiY2ptZ29pb2UwNGYxbTN3bzJnNTZpc2IzZCJ9.O-ibkJlgtLAeBMMYJOB5Uw';
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v9',
         center: [-20, 20],
-        zoom: 2
+        zoom: 0
     });
 
     map.on('load', function () {
@@ -21,7 +44,17 @@ var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
         // Heatmap layers also work with a vector tile source.
         map.addSource('twitter_test', {
             "type": "geojson",
-            "data": geoJsonTest.negativeTestData()
+            "data": 
+            {
+                "type": "FeatureCollection",
+                    "crs": { 
+                        "type": "name", 
+                        "properties": { 
+                            "title": "testing",
+                            "name": "urn:ogc:def:crs:OGC:1.3:CRS84" 
+                        } },
+                "features": coordinates
+            }
         });
 
         map.addLayer({

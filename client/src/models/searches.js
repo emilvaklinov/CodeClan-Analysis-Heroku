@@ -34,11 +34,15 @@ Searches.prototype.getSearchResults = function(searchTerm){
       tweets.forEach((tweet) => {
         if (tweet.latitude && tweet.longitude){
           tweetsWithLocations.push(tweet);
-          tweetsCoordinates.push({ longitude: tweet.longitude, latitude: tweet.latitude });
+          tweetsCoordinates.push({ geometry: { 
+            type: "Point",
+            coordinates: [tweet.longitude, tweet.latitude] }});
         }
       })
       PubSub.publish('Searches:tweet-data-loaded', tweets);
-      console.log('tweetscoordinates: ', tweetsCoordinates);
+      
+      const stringifiedCoordinates = JSON.stringify(tweetsCoordinates);
+      console.log('stringifiedtweetscoordinates: ', stringifiedCoordinates);
       PubSub.publish('Searches:tweet-coordinates-loaded', tweetsCoordinates);
     })
     .catch(console.error);
