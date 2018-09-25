@@ -4,13 +4,6 @@ const ViewChart = function(myChart_x){
   this.myChart_x = myChart_x;
 }
 
-// ViewChart.prototype.renderAllCharts = function(){
-//   this.renderChart([20, 100],'retweets');
-//   this.renderChart([25,90],'likes');
-//   this.renderChart([30,150],'followers');
-// }
-
-
 
 ViewChart.prototype.renderChart = function(testChartData, chartTitle){
   this.myChart_x.setOption({

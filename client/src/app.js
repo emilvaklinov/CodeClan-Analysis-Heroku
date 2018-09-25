@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let chartTitle_2 = "likes"
   chartView_2.renderChart(testChartData_2, chartTitle_2);
 
+  const myChart_3 = echarts.init(document.getElementById('chart_3'));
+  const chartView_3 = new ChartView(myChart_3);
+  let testChartData_3 = [80, 150];
+  let chartTitle_3 = "followers"
+  chartView_3.renderChart(testChartData_3, chartTitle_3);
+
 
 
   formView.bindEvents();

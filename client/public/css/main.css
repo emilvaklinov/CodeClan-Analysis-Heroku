@@ -20,6 +20,7 @@ h2 {
 
 #map{
   height: 40vw;
+  margin-bottom: 2rem;
 }
 
 input#submit {
@@ -30,6 +31,12 @@ button {
 }
 
 .chart {
+  display: inline;
   height: 20vh;
   width: 20vh;
+}
+
+.chart div{
+  display: inline-block;
+  margin-right: 5%;
 }
