@@ -29,7 +29,17 @@ Searches.prototype.getData = function(){
 Searches.prototype.getSearchResults = function(searchTerm){
   this.APIrequest.get(`?query=${searchTerm}`)
     .then((tweets) => {
+      let tweetsWithLocations = [];
+      let tweetsCoordinates = [];
+      tweets.forEach((tweet) => {
+        if (tweet.latitude && tweet.longitude){
+          tweetsWithLocations.push(tweet);
+          tweetsCoordinates.push({ longitude: tweet.longitude, latitude: tweet.latitude });
+        }
+      })
       PubSub.publish('Searches:tweet-data-loaded', tweets);
+      console.log('tweetscoordinates: ', tweetsCoordinates);
+      PubSub.publish('Searches:tweet-coordinates-loaded', tweetsCoordinates);
     })
     .catch(console.error);
 };
