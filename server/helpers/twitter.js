@@ -39,7 +39,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       // and the we're definately not on the last page
       // add the data so far to allResults
       const tweets = data.statuses.map(tweet => {
-        return { text: tweet.full_text, location: tweet.user.location }
+        return { text: tweet.full_text, location: tweet.user.location, retweets: tweet.retweet_count, favourites: tweet.favorite_count }
       });
 
       tweets.forEach((tweet) => {
@@ -47,7 +47,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       });
 
       // allResults.push(tweets);
-      console.log("next results = ", data.search_metadata.next_results);
+      // console.log("next results = ", data.search_metadata.next_results);
       if (data.search_metadata.next_results && (currentPageNumber < maxPages)) {
         // set nextResults to the value from the metadata
         nextResultsQuery = data.search_metadata.next_results;
@@ -59,7 +59,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
         //const flattenedResults = allResults.flat(0);
 
         this.getCoordsForTweets(allResults).then(() => {
-          console.log("resolving results")
+          // console.log("resolving results")
           resolve(allResults);
         })
 
@@ -75,7 +75,7 @@ Twitter.prototype.makeSearchTweetsRequestToTwitterWithSearchTerm = function (sea
     if (nextResultsQuery) {
       queryPath = `https://api.twitter.com/1.1/search/tweets.json${nextResultsQuery}&tweet_mode=extended`;
       queryOptions = {};
-      console.log(queryPath);
+      // console.log(queryPath);
     } else {
       queryPath = 'search/tweets';
       queryOptions = { q: searchTerm + " -filter:retweets", has: "geo", count: 100, exclude: "replies", tweet_mode: "extended" };
@@ -112,10 +112,10 @@ Twitter.prototype.getCoordsForTweets = function (tweets) {
       let tweetToUpdate = tweets[index];
       let tweetLocation = tweet.location;
       locationCollection.findOne({ location: tweetLocation }).then((dbLocation) => {
-        console.log('search result', dbLocation);
+        // console.log('search result', dbLocation);
         if (dbLocation && dbLocation.location === tweetLocation) {
 
-          console.log('found in database', tweetLocation);
+          // console.log('found in database', tweetLocation);
 
           tweetToUpdate.latitude = dbLocation.latitude;
           tweetToUpdate.longitude = dbLocation.longitude;
@@ -129,7 +129,7 @@ Twitter.prototype.getCoordsForTweets = function (tweets) {
 
           geocoder.getLocationData(tweetLocation)
             .then((data) => {
-              console.log('found geocode data for tweet location', data, tweetLocation, index);
+              // console.log('found geocode data for tweet location', data, tweetLocation, index);
               tweetToUpdate.latitude = data[0];
               tweetToUpdate.longitude = data[1];
               numProcessed += 1;
@@ -147,7 +147,7 @@ Twitter.prototype.getCoordsForTweets = function (tweets) {
 
             })
             .catch((err) => {
-              console.log('geocode error', err);
+              // console.log('geocode error', err);
               numProcessed += 1;
 
               if (numProcessed === numTweets) {

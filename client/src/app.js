@@ -40,9 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // chartView_3.renderChart(testChartData_3, chartTitle_3);
 
 
+  const chartView = new ChartView();
 
   formView.bindEvents();
   listView.bindEvents();
   searches.bindEvents();
   mapView.bindEvents();
+  chartView.bindEvents();
 })

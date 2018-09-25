@@ -7,11 +7,11 @@ const ListView = function (listElement, searchResultsListElement) {
 
 ListView.prototype.bindEvents = function () {
   PubSub.subscribe('Searches:searches-data-loaded', (event) => {
-    console.log(event.detail);
+    // console.log(event.detail);
     this.render(event.detail);
   })
   PubSub.subscribe('Searches:tweet-data-loaded', (event) => {
-    console.log('tweet data: ', event.detail);
+    // console.log('tweet data: ', event.detail);
     this.renderSearchResultsList(event.detail);
   });
 };

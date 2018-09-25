@@ -9,14 +9,14 @@ const geoJsonTest = new GeoJsonTest();
 MapView.prototype.bindEvents = function () {
     this.renderMap();
     PubSub.subscribe('Searches:tweet-coordinates-loaded', (event) => {
-        console.log('event', event);
+        // console.log('event', event);
         this.renderMap(event.detail);
     });
   };
 
 MapView.prototype.renderMap = function(coordinates){
 var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-console.log('from inside map: ', coordinates);
+// console.log('from inside map: ', coordinates);
 
 const json = {
     "type": "FeatureCollection",
@@ -28,7 +28,7 @@ const json = {
             } },
     "features": coordinates
 }
-console.log('data: ', json);
+// console.log('data: ', json);
 
 
     mapboxgl.accessToken = 'pk.eyJ1IjoibS1qZXJ3YW4iLCJhIjoiY2ptZ29pb2UwNGYxbTN3bzJnNTZpc2IzZCJ9.O-ibkJlgtLAeBMMYJOB5Uw';
