@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chartView_1 = new ChartView(myChart_1);
   let testChartData_1 = [20, 100];
   let chartTitle_1 = "retweets"
-  chartView_1.renderChart(testChartData_1, chartTitle_1);
+  //chartView_1.renderChart(testChartData_1, chartTitle_1);
 
 
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chartView_2 = new ChartView(myChart_2);
   let testChartData_2 = [80, 150];
   let chartTitle_2 = "likes"
-  chartView_2.renderChart(testChartData_2, chartTitle_2);
+  //chartView_2.renderChart(testChartData_2, chartTitle_2);
 
   // const myChart_3 = echarts.init(document.getElementById('chart_3'));
   // const chartView_3 = new ChartView(myChart_3);
