@@ -24,7 +24,7 @@ MongoClient.connect('mongodb://localhost:27017')
 
 app.get('/api/search-results', function (req, res) {
   let searchTerm = req.query.query;
-  console.log(searchTerm);
+  // console.log(searchTerm);
   twitter.getAllSearchResultsFromLast7DaysForSearchTerm(searchTerm)
     .then((data) => {
       res.json(data);
@@ -37,7 +37,6 @@ app.get('/api/search-results', function (req, res) {
 app.get('/api/geocoder-results', function (req, res) {
   geocoder.getLocationData('Edinburgh')
     .then((data) => {
-      console.log(data);
       res.json(data);
     })
     .catch((err) => {

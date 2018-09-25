@@ -3,7 +3,7 @@ const Request = function (url) {
 };
 
 Request.prototype.get = function (appendToUrl) {
-  console.log("get request", this.url + appendToUrl)
+  // console.log("get request", this.url + appendToUrl)
   if(appendToUrl){
     return fetch(this.url + appendToUrl)
     .then((response) => response.json());
