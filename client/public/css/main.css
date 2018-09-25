@@ -1,5 +1,5 @@
 body {
-  font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 18px;
   color: black;
   margin: 0px;
@@ -22,7 +22,7 @@ body {
   grid-area: header;
   height: 5rem;
   background-color: lightslategray;
-  text-align: center;
+  text-align: right;
 }
 
 .content-top {
@@ -50,14 +50,63 @@ body {
 }
 
 .content-top-left {
-  display: flex;
-  flex-direction: column;
-  margin-right: 5rem;
+  margin-right: 2rem;
+  width: 33%;
 }
 
 #form-container {
   margin-top: 2rem;
   margin-left: 2rem;
+  width: 100%;
+}
+
+.search-history #list{
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.search-history button{
+  height: 1.3rem;
+  width: 1.3rem;
+  border: none;
+  color: red;
+}
+
+.search-history #list li {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+#input {
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  display: inline-block;
+  width: 80%;
+  height: 100%;
+  margin-right: 0.5rem;
+  font-size: 22px;
+}
+
+#input::placeholder {
+  font-style: italic;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: middle;
+  margin-top: 1rem;
+  height: 3rem;
+}
+
+button#submit {
+  cursor: pointer;
+  display: inline-block;
+  height: 100%;
+  width: 3rem;
+  font-size: 22px;
+  background-color: #fff;
 }
 
 .search-history {
@@ -70,7 +119,7 @@ body {
   margin-bottom: 2rem;
   margin-right: 2rem;
   height: 35rem;
-  width: 50rem;
+  width: 66%;
 }
 
 #result-container {
@@ -80,6 +129,11 @@ body {
 
 h2 {
   font-size: 18px;
+}
+
+.h2 {
+  font-size: 28px;
+  margin-bottom: 2rem;
 }
 
 .chart-1 {
@@ -95,8 +149,11 @@ h2 {
 }
 
 .navbar h2 {
-  margin-top:1.5rem;
-  font-size: 24px;
+  margin-top:1.7rem;
+  margin-right: 6rem;
+  font-family: 'Noto Serif', serif;
+  font-size: 22px;
+  font-weight: 500;
   color: white;
 }
 
@@ -104,9 +161,6 @@ h2 {
 
 }
 
-input#submit {
-  cursor: pointer;
-}
 button {
   cursor: pointer;
 }

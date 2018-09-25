@@ -6,17 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./js/bundle.js"></script>
   <link rel="stylesheet" href="./css/main.css">
-  <link href="https://fonts.googleapis.com/css?family=Hind+Madurai:400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
   <!-- MAPBOX  -->
-  <title>TweetFeels</title>
+  <title>CodeClan Analytica</title>
 </head>
 
 <body>
   <div class="grid-container">
 
     <nav class="navbar">
-      <h2>CCCP</h2>
+      <h2>CodeClan Analytica</h2>
     </nav>
 
     <div class="content-top">
@@ -25,16 +29,16 @@
         <div id="form-container">
 
           <form id="form">
-            <label for="input">Enter a keyword: </label>
-            <input type="text" id="input" name="input">
-            <input type="submit" id="submit" value="Search Twitter">
+            <label class="h2" for="input">Search for a word or phrase:</label>
+            <div class="search-wrapper">
+              <input type="text" id="input" name="input" placeholder="e.g. Brexit">
+              <button type="submit" id="submit"><i class="fas fa-search"></i></button>
+            </div>
           </form>
 
         </div><br>
 
         <div class="search-history">
-
-          <h2>Search History: </h2>
           <ul id="list">
           </ul>
 

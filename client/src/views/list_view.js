@@ -16,7 +16,7 @@ ListView.prototype.bindEvents = function () {
   });
 };
 
-ListView.prototype.renderSearchResultsList = function(searchResults){
+ListView.prototype.renderSearchResultsList = function (searchResults) {
   this.searchResultsListElement.innerHTML = "";
   searchResults.forEach((searchResult) => {
     this.renderOneSearchResult(searchResult);
@@ -44,14 +44,13 @@ ListView.prototype.renderOne = function (search) {
   this.listElement.appendChild(searchItem);
 }
 
-ListView.prototype.createDeleteButton = function (listItemId){
+ListView.prototype.createDeleteButton = function (listItemId) {
   const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = '<i class="fas fa-times"></i>';
   deleteButton.value = listItemId;
-  deleteButton.addEventListener('click', (event)=>{
-    PubSub.publish('ListView:delete-clicked', event.target.value);
-    
+  deleteButton.addEventListener('click', () => {
+    PubSub.publish('ListView:delete-clicked', listItemId);
   })
-  deleteButton.textContent = "delete";
   return deleteButton
 }
 
