@@ -158,6 +158,9 @@ h2 {
   align-items: center;
 }
 
+/* div.chart-1, div.chart-2 {
+  padding-left: 5%;
+} */
 .navbar h2 {
   margin-top:1.7rem;
   margin-right: 6rem;
@@ -193,6 +196,6 @@ ul#search-results-list {
   color: black;
   background-color: white;
   background-clip: content-box;
-  padding-left: 150px;
+  padding-left: 100px;
   padding-right: 250px;
 }
