@@ -21,3 +21,15 @@ h2 {
 #map{
   height: 40vw;
 }
+
+input#submit {
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+}
+
+.chart {
+  height: 20vh;
+  width: 20vh;
+}

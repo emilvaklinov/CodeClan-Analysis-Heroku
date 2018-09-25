@@ -2,7 +2,7 @@ const FormView = require('./views/form_view');
 const ListView = require('./views/list_view');
 const Searches = require('./models/searches');
 const MapView = require('./views/map_view');
-
+const ChartView = require('./views/chart_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   let url = 'http://localhost:3000/api/inputs';
@@ -17,8 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const listView = new ListView(listElement, searchResultsListElement);
   const mapView = new MapView();
 
+
+  const chartView = new ChartView();
+
+
   formView.bindEvents();
   listView.bindEvents();
   searches.bindEvents();
   mapView.renderMap();
+  chartView.renderChart();
 })
