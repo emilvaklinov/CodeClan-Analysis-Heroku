@@ -1,35 +1,57 @@
 var echarts = require('echarts');
 const PubSub = require('../helpers/pub_sub.js');
 
-const ViewChart = function(myChart_x){
-  this.myChart_x = myChart_x;
-  console.log('mychartx in constructor',this.myChart_x);
+const ViewChart = function(){
+  this.myChart_1 = null;
+  this.myChart_2 = null;
 }
 
 ViewChart.prototype.bindEvents = function(){
   PubSub.subscribe('Searches:totals-calulated', (event) =>{
-    this.renderChart(event.detail, "retweets");
+    this.renderChartRetweets(event.detail.retweets, event.detail.retweets);
+    this.renderChartFavourites(event.detail.favourites, event.detail.favourites);
   })
 }
 
-ViewChart.prototype.renderChart = function(chartData, chartTitle){
-  console.log(chartData)
-  console.log('mychartx in render function',this.myChart_x);
-  const my_chart_hardcoded = echarts.init(document.getElementById('chart_1'))
-  my_chart_hardcoded.setOption({
+ViewChart.prototype.renderChartRetweets = function (chartData_positive, chartData_negative){
+  this.myChart_1 = echarts.init(document.getElementById('chart_1'))
+  this.myChart_1.setOption({
     title: {
-      text: chartTitle
+      text: 'retweets'
     },
     tooltip: {},
     series: [{
       radius: '50%',
       type: 'pie',
       data:[
-        {value:chartData.retweets, name: chartData.retweets},
-        {value:chartData.favourites, name: chartData.favourites},
+        { value: chartData_positive, name: `positive: ${chartData_positive}`},
+        { value: chartData_negative, name: `negative: ${chartData_negative}`},
       ]
     }]
   });
 }
+
+ViewChart.prototype.renderChartFavourites = function (chartData_positive, chartData_negative) {
+  this.myChart_1 = echarts.init(document.getElementById('chart_2'))
+  this.myChart_1.setOption({
+    title: {
+      text: 'favourites'
+    },
+    tooltip: {},
+    series: [{
+      radius: '50%',
+      type: 'pie',
+      data: [
+        { value: chartData_positive, name: `positive: ${chartData_positive}` },
+        { value: chartData_negative, name: `negative: ${chartData_negative}` },
+      ]
+    }]
+  });
+}
+
+
+
+
+
 
 module.exports = ViewChart;
