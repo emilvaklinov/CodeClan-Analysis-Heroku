@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchResultsListElement = document.querySelector('#search-results-list');
   const listView = new ListView(listElement, searchResultsListElement);
   const mapView = new MapView();
+  const chartView = new ChartView();
 
 
   const myChart_1 = echarts.init(document.getElementById('chart_1'));
@@ -24,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let testChartData_1 = [20, 100];
   let chartTitle_1 = "retweets"
   chartView_1.renderChart(testChartData_1, chartTitle_1);
-
 
 
   const myChart_2 = echarts.init(document.getElementById('chart_2'));
@@ -45,4 +45,5 @@ document.addEventListener('DOMContentLoaded', () => {
   listView.bindEvents();
   searches.bindEvents();
   mapView.bindEvents();
+  chartView.bindEvents();
 })

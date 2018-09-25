@@ -1,9 +1,15 @@
 // var echarts = require('echarts');
+const PubSub = require('../helpers/pub_sub.js');
 
 const ViewChart = function(myChart_x){
   this.myChart_x = myChart_x;
 }
 
+ViewChart.prototype.bindEvents = function(){
+  PubSub.subscribe('Searches:totals-calulated', (event) =>{
+    console.log('halo warszawa:', event.detail);
+  })
+}
 
 ViewChart.prototype.renderChart = function(testChartData, chartTitle){
   this.myChart_x.setOption({
