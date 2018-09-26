@@ -37,7 +37,7 @@ const json = {
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v9',
-        center: [-20, 20],
+        center: [0, 45],
         zoom: 0.65
     });
 
