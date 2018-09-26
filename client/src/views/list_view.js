@@ -8,6 +8,14 @@ const ListView = function (listElement, searchResultsListElement) {
 }
 
 ListView.prototype.bindEvents = function () {
+  let allTweets = [];
+  let eventCounter = 0;
+
+  PubSub.subscribe('FormView:search-term-submitted', (event) => {
+    eventCounter = 0;
+    allTweets = [];
+  });
+
   PubSub.subscribe('Searches:searches-data-loaded', (event) => {
     this.render(event.detail);
   })
@@ -15,14 +23,24 @@ ListView.prototype.bindEvents = function () {
   //   console.log('got all tweets')
   //   this.renderSearchResultsList(event.detail);
   // });
-  // PubSub.subscribe('Searches:happy-tweet-data-loaded', (event) => {
-  //   console.log('got happy tweets')
-  //   this.renderSearchResultsList(event.detail);
-  // });
-  // PubSub.subscribe('Searches:sad-tweet-data-loaded', (event) => {
-  //   console.log('got sad tweets')
-  //   this.renderSearchResultsList(event.detail);
-  // });
+  PubSub.subscribe('Searches:happy-tweet-data-loaded', (event) => {
+    eventCounter += 1;
+    allTweets = allTweets.concat(event.detail, allTweets);
+    if (eventCounter === 2) {
+      this.renderTop5Tweets(allTweets);
+    }
+    console.log('got happy tweets')
+    //this.renderSearchResultsList(event.detail);
+  });
+  PubSub.subscribe('Searches:sad-tweet-data-loaded', (event) => {
+    eventCounter += 1;
+    allTweets = allTweets.concat(event.detail, allTweets);
+    if (eventCounter === 2) {
+      this.renderTop5Tweets(allTweets);
+    }
+    console.log('got sad tweets')
+    //this.renderSearchResultsList(event.detail);
+  });
 };
 
 ListView.prototype.renderSearchResultsList = function (searchResults) {
@@ -35,7 +53,17 @@ ListView.prototype.renderSearchResultsList = function (searchResults) {
 ListView.prototype.renderOneSearchResult = function (searchResult) {
   const searchResultItem = document.createElement('li');
   searchResultItem.textContent = searchResult.text;
+  searchResultItem.id = 'tweet' + searchResult.id;
+  //console.log(searchResult.retweets);
   this.searchResultsListElement.appendChild(searchResultItem);
+  twttr.widgets.createTweet(
+    ' ' + searchResult.id,
+    document.getElementById('tweet' + searchResult.id),
+    console.log(searchResult.id),
+    {
+      theme: 'light'
+    }
+  );
 }
 
 ListView.prototype.render = function (searches) {
@@ -61,14 +89,27 @@ ListView.prototype.createDeleteButton = function (listItemId) {
     PubSub.publish('ListView:delete-clicked', listItemId);
   })
 
-  const historyButtons = document.querySelectorAll('#list button');
-  const list = document.querySelector('#list');
-  const buttonCount = historyButtons.length;
-  if (buttonCount >= 4) {
-    list.lastChild.remove();
-  };
+  // const historyButtons = document.querySelectorAll('#list button');
+  // const list = document.querySelector('#list');
+  // const buttonCount = historyButtons.length;
+  // if (buttonCount >= 6) {
+  //   list.lastChild.remove();
+  // };
   return deleteButton
 }
+
+ListView.prototype.renderTop5Tweets = function (tweets) {
+  tweets.sort((a, b) => {
+    return b.retweets - a.retweets;
+  });
+  const top5Tweets = tweets.slice(0, 5);
+  const container = document.querySelector('#result-container');
+  container.classList.remove('hidden');
+  this.searchResultsListElement.innerHTML = "";
+  top5Tweets.forEach((tweet) => {
+    this.renderOneSearchResult(tweet);
+  });
+};
 
 
 module.exports = ListView;

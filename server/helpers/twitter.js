@@ -39,7 +39,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       // and the we're definately not on the last page
       // add the data so far to allResults
       const tweets = data.statuses.map(tweet => {
-        return { text: tweet.full_text, location: tweet.user.location, retweets: tweet.retweet_count, favourites: tweet.favorite_count }
+        return { text: tweet.full_text, location: tweet.user.location, retweets: tweet.retweet_count, favourites: tweet.favorite_count, id: tweet.id }
       });
 
       tweets.forEach((tweet) => {

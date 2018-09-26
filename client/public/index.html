@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./js/bundle.js"></script>
+  <script>window.twttr = (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function (f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
   <link rel="stylesheet" href="./css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
@@ -44,12 +60,14 @@
         </div>
         <div class="content-top-left-text">
           <h2 class="h2">Ever wondered where all those tweets come from?</h2>
-          <p>When you enter a word or phrase above, we use it to gather the last 3000 tweets in realtime that mention
-            that word or phrase. <br><br>Since the tweets come from all over the world, we can anaylse their location data
-            and plot on the map exactly where they originated from. <br><br>... for research purposes.</p>
+          <p>When you enter a word or phrase above, we use it to gather the last 3000 tweets in realtime that mention that
+            word or phrase. <br><br>Since the tweets come from all over the world, we can anaylse their location data and
+            plot on the map exactly where they originated from. <br><br>... for research purposes.</p>
         </div>
       </div>
-      <div id="loading-modal" class="hidden"><div class="modal-content"><span>Fetching data from Twitter...</span></div></div>
+      <div id="loading-modal" class="hidden">
+        <div class="modal-content"><span>Fetching data from Twitter...</span></div>
+      </div>
       <div id="loading-overlay" class="hidden"></div>
       <div id='map'></div>
 
@@ -79,10 +97,12 @@
     <div class="" id="chart_2"></div>
   </div>
   <!-- start of content-bottom -->
-  <div class="content-bottom" id="result-container">
-    <!-- <h2>Search Results: </h2>
-    <ul id="search-results-list">
-    </ul> -->
+  <div class="content-bottom hidden" id="result-container">
+    <h2>Top 5 tweets</h2>
+    <div>
+      <ul id="search-results-list">
+      </ul>
+    </div>
   </div>
   <!-- end of content-bottom -->
   </div>

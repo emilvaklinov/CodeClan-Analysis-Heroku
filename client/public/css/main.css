@@ -100,8 +100,7 @@ body {
 }
 .content-bottom {
   grid-area: content-top;
-  display: flex;
-  flex-direction: row;
+  margin-bottom: 2rem;
 }
 /* --------------------charts: */
 .showFlex{
@@ -254,9 +253,9 @@ button#submit:hover{
   margin-left: 2rem;
 }
 
-h2 {
+/* h2 {
   font-size: 18px;
-}
+} */
 
 .h2 {
   font-size: 28px;
@@ -281,9 +280,16 @@ ul#search-results-list {
   color: black;
   background-color: white;
   background-clip: content-box;
-  padding-left: 100px;
-  padding-right: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+ul#search-results-list li {
+  margin-bottom: 1rem;
+}
+
+
 
 
 .hidden {
