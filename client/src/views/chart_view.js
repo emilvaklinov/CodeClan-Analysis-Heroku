@@ -1,13 +1,15 @@
 var echarts = require('echarts');
 const PubSub = require('../helpers/pub_sub.js');
 
-const ViewChart = function(myChart_x){
+const ViewChart = function(chartHtmlElement){
   this.myChart_1 = null;
   this.myChart_2 = null;
+  this.chartHtmlElement = chartHtmlElement;
 }
 
 ViewChart.prototype.bindEvents = function () {
   PubSub.subscribe('Searches:totals-calulated', (event) => {
+    this.chartHtmlElement.classList.remove("hidden");
     this.myChart_1 = echarts.init(document.getElementById('chart_1'))
     this.myChart_2 = echarts.init(document.getElementById('chart_2'))
     this.renderChart(event.detail.retweets, event.detail.retweets, 'Positive vs Negative Retweets', this.myChart_1);

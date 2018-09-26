@@ -199,3 +199,8 @@ ul#search-results-list {
   padding-left: 100px;
   padding-right: 250px;
 }
+
+
+.hidden {
+  display: none; 
+}
