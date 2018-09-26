@@ -51,6 +51,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
         // set nextResults to the value from the metadata
         nextResultsQuery = data.search_metadata.next_results;
         let nextPageNumber = currentPageNumber + 1;
+        console.log('Fetched a page', currentPageNumber, searchTerm, nextResultsQuery);
         // call this method recursively with the new values from the first call
         this.getSinglePageOfResultsFromLast7Days(searchTerm, nextResultsQuery, nextPageNumber, maxPages, allResults, resolve, reject);
         // otherwise, exit now and resolve with the data

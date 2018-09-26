@@ -7,12 +7,39 @@ const MapView = function(){
 const geoJsonTest = new GeoJsonTest();
 
 MapView.prototype.bindEvents = function () {
-    this.renderMap();
-    PubSub.subscribe('Searches:tweet-coordinates-loaded', (event) => {
+    let eventCounter = 0;
+    let allCoordinates = [];
 
-        // console.log('event', event);
-        this.renderMap(event.detail);
-        this.removeLoadingSpinner();
+    // load empty map on start
+    this.renderMap();
+
+    PubSub.subscribe('FormView:search-term-submitted', (event) => {
+        eventCounter = 0;
+        allCoordinates = [];
+    });
+
+    PubSub.subscribe('Searches:happy-tweet-coordinates-loaded', (event) => {
+        eventCounter += 1;
+        allCoordinates = allCoordinates.concat(event.detail, allCoordinates);
+        if (eventCounter === 2){
+            console.log('all coords happy', allCoordinates);
+            this.renderMap(allCoordinates);
+            this.removeLoadingSpinner();
+        } else {
+            console.log('all coords sad was resolved first', allCoordinates);
+        }
+    });
+
+    PubSub.subscribe('Searches:sad-tweet-coordinates-loaded', (event) => {
+        eventCounter += 1;
+        allCoordinates = allCoordinates.concat(event.detail, allCoordinates);
+        if (eventCounter === 2){
+            console.log('all coords sad', allCoordinates);
+            this.renderMap(allCoordinates);
+            this.removeLoadingSpinner();
+        } else {
+            console.log('all coords happy was resolved first', allCoordinates);
+        }
     });
   };
 

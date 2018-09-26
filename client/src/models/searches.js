@@ -36,12 +36,14 @@ Searches.prototype.getSearchResults = function (searchTerm, sentimentQuery) {
   let query = null;
   let tweetChannel = null;
   let calculationChannel = null;
+  let coordinateChannel = null;
   // if there is no sentiment query
   // search without one and set the channel variable to be generic
   if (!sentimentQuery){
     query = `?query=${searchTerm}`;
     tweetChannel = 'Searches:tweet-data-loaded';
     calculationChannel = 'Searches:totals-calulated';
+    coordinateChannel = 'Searches:tweet-coordinates-loaded';
   // if there is a sentiment query
   // add the query to the search
   } else 
@@ -51,6 +53,7 @@ Searches.prototype.getSearchResults = function (searchTerm, sentimentQuery) {
     if (sentimentQuery === '%20%3A%29'){
       tweetChannel = 'Searches:happy-tweet-data-loaded';
       calculationChannel = 'Searches:happy-totals-calulated';
+      coordinateChannel = 'Searches:happy-tweet-coordinates-loaded';
     }
 
     // if the extra query is for sad sentiment
@@ -58,6 +61,7 @@ Searches.prototype.getSearchResults = function (searchTerm, sentimentQuery) {
     else if (sentimentQuery === '%20%3A%28'){
       tweetChannel = 'Searches:sad-tweet-data-loaded';
       calculationChannel = 'Searches:sad-totals-calulated';
+      coordinateChannel = 'Searches:sad-tweet-coordinates-loaded';
     }
 
 console.log("searching for " + query);
@@ -81,10 +85,7 @@ console.log("searching for " + query);
           }
         })
         PubSub.publish(tweetChannel, tweets);
-  
-        const stringifiedCoordinates = JSON.stringify(tweetsCoordinates);
-        // console.log('stringifiedtweetscoordinates: ', stringifiedCoordinates);
-        PubSub.publish('Searches:tweet-coordinates-loaded', tweetsCoordinates);
+        PubSub.publish(coordinateChannel, tweetsCoordinates);
       })
       .catch(console.error);
 };
