@@ -118,8 +118,8 @@ button#submit {
   background-color: #fff;
   border-radius: 12%;
   -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,2,0.22);
--moz-box-shadow: 0px 0px 3px 0px rgba(0,0,2,0.22);
-box-shadow: 0px 0px 3px 0px rgba(0,0,2,0.22);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,2,0.22);
+  box-shadow: 0px 0px 3px 0px rgba(0,0,2,0.22);
 }
 
 .search-history {
@@ -193,7 +193,6 @@ button {
 }
 
 ul#search-results-list {
-  font-family: fantasy;
   color: black;
   background-color: white;
   background-clip: content-box;
