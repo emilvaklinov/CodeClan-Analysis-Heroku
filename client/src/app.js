@@ -4,6 +4,7 @@ const Searches = require('./models/searches');
 const MapView = require('./views/map_view');
 const ChartView = require('./views/chart_view.js');
 const echarts = require('echarts');
+const TotalsView = require('./views/totals_view')
 
 document.addEventListener('DOMContentLoaded', () => {
   let url = 'http://localhost:3000/api/inputs';
@@ -21,9 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const charts = document.querySelector('#charts')
   const chartView = new ChartView(charts);
 
+  const totals = document.querySelector('#summary');
+  const totalsView = new TotalsView(totals);
+
+
   formView.bindEvents();
   listView.bindEvents();
   searches.bindEvents();
   mapView.bindEvents();
   chartView.bindEvents();
+  totalsView.bindEvents();
 })
