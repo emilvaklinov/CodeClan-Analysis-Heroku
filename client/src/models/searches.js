@@ -106,7 +106,6 @@ Searches.prototype.calculator = function (tweetData) {
     totals.retweets += tweet.retweets;
     totals.favourites += tweet.favourites;
   })
-  console.log(totals)
   return totals;
 }
 module.exports = Searches;
