@@ -189,6 +189,11 @@ button#submit {
   box-shadow: 0px 0px 3px 0px rgba(0,0,2,0.22);
 }
 
+button#submit:hover{
+ background-color: #15A5CC;
+ color: white;
+}
+
 .search-history {
   margin-left: 2rem;
   margin-bottom: 0rem;

@@ -15,8 +15,9 @@ ViewChart.prototype.bindEvents = function () {
 
 
   PubSub.subscribe('Searches:happy-totals-calulated', (event) => {
-    this.chartHtmlElement.classList.remove('hidden')
-    this.chartHtmlElement.classList.add('showFlex')
+    const chart1 = document.querySelector('#chart_1');
+    this.chartHtmlElement.classList.remove('hidden');
+    chart1.classList.add('chart');
     this.myChart_1 = echarts.init(document.getElementById('chart_1'))
     this.myChart_2 = echarts.init(document.getElementById('chart_2'))
     this.retweetsValues.happyRetweets = event.detail.retweets;
@@ -38,6 +39,9 @@ ViewChart.prototype.bindEvents = function () {
   })
 
   PubSub.subscribe('Searches:sad-totals-calulated', (event) => {
+    const chart2 = document.querySelector('#chart_2');
+    this.chartHtmlElement.classList.remove('hidden');
+    chart2.classList.add('chart');
     this.retweetsValues.sadRetweets = event.detail.retweets;
     this.favouritesValues.sadFavourites = event.detail.favourites;
     console.log('sad retweets from event: ', event.detail.retweets);
