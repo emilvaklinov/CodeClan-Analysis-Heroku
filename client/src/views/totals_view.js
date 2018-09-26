@@ -15,13 +15,13 @@ TotalsView.prototype.renderTotals = function (totalData) {
     firstContentElement.textContent = totalData.totalTweets;
 
     const secondContentElement = document.querySelector('#grid-item-6');
-    firstContentElement.textContent = totalData.favourites;
+    secondContentElement.textContent = totalData.favourites;
 
     const thirdContentElement = document.querySelector('#grid-item-7');
-    firstContentElement.textContent = totalData.retweets;
+    thirdContentElement.textContent = totalData.retweets;
 
     const fourthContentElement = document.querySelector('#grid-item-8');
-    // firstContentElement.textContent = totalData.XXXX;
+    // fourthContentElement.textContent = totalData.XXXX;
 
 }
 
