@@ -37,6 +37,12 @@ body {
   flex-direction: row;
 }
 
+.grid-summary{
+  display: grid;
+  height: 10 rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 .content-bottom {
   grid-area: content-top;
   display: flex;
