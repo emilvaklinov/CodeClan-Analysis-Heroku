@@ -1,25 +1,35 @@
-// var echarts = require('echarts');
+var echarts = require('echarts');
+const PubSub = require('../helpers/pub_sub.js');
 
 const ViewChart = function(myChart_x){
-  this.myChart_x = myChart_x;
+  this.myChart_1 = null;
+  this.myChart_2 = null;
+}
+
+ViewChart.prototype.bindEvents = function () {
+  PubSub.subscribe('Searches:totals-calulated', (event) => {
+    this.myChart_1 = echarts.init(document.getElementById('chart_1'))
+    this.myChart_2 = echarts.init(document.getElementById('chart_2'))
+    this.renderChart(event.detail.retweets, event.detail.retweets, 'retweets', this.myChart_1);
+    this.renderChart(event.detail.favourites, event.detail.favourites, 'favourites', this.myChart_2);
+  })
 }
 
 
-ViewChart.prototype.renderChart = function(testChartData, chartTitle){
-  this.myChart_x.setOption({
-    // title: {
-    //   text: chartTitle
-    // },
+ViewChart.prototype.renderChart = function (chartData_positive, chartData_negative, title, chart_x) {
+  chart_x.setOption({
+    title: {
+      text: title
+    },
     tooltip: {},
     series: [{
-      radius: '40%',
+      radius: '50%',
       type: 'pie',
-      data:[
-        {value:testChartData[0], name:testChartData[0]},
-        {value:testChartData[1], name:testChartData[1]},
+      data: [
+        { value: chartData_positive, name: `positive: ${chartData_positive}` },
+        { value: chartData_negative, name: `negative: ${chartData_negative}` },
       ]
     }]
   });
 }
-
 module.exports = ViewChart;
