@@ -20,6 +20,7 @@ TotalsView.prototype.bindEvents = function () {
         this.sadFavourites = event.detail.favourites;
 
         this.renderTotals()
+        this.formElement.classList.remove('hidden');
     })  
 }
 
