@@ -52,7 +52,6 @@ ListView.prototype.createDeleteButton = function (listItemId) {
 
   const historyButtons = document.querySelectorAll('#list button');
   const list = document.querySelector('#list');
-  console.log('all delete buttons:', historyButtons);
   const buttonCount = historyButtons.length;
   if (buttonCount >= 4) {
     list.lastChild.remove();
