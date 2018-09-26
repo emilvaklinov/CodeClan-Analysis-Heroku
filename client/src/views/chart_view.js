@@ -60,6 +60,7 @@ ViewChart.prototype.renderChart = function (chartData_positive, chartData_negati
     // title: {
     //   text: title
     // },
+    color: ['#c4114b','#15A5CC'],
     grid: {
       left: 0,
       top: 0,

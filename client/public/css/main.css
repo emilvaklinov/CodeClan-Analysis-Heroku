@@ -46,9 +46,26 @@ body {
   justify-content: space-evenly;
 }
 
+#grid-item-1{
+  color: #c4114b;
+}
+
+#grid-item-2{
+  color: #15A5CC;
+}
+
+#grid-item-3{
+  color: #c4114b;
+}
+
+#grid-item-4{
+  color: #15A5CC;
+}
+
 .chart {
-  height: 10rem;;
-  min-width: 50%;
+  margin: 0px;
+  height: 24rem;
+  width: 24rem;
   /* //width: 49%; */
 }
 /* ============================ DATA: */
