@@ -1,5 +1,7 @@
 const PubSub = require('../helpers/pub_sub');
 
+let tweets = null;
+
 const ListView = function (listElement, searchResultsListElement) {
   this.listElement = listElement;
   this.searchResultsListElement = searchResultsListElement;
@@ -9,7 +11,16 @@ ListView.prototype.bindEvents = function () {
   PubSub.subscribe('Searches:searches-data-loaded', (event) => {
     this.render(event.detail);
   })
-  PubSub.subscribe('Searches:tweet-data-loaded', (event) => {
+  // PubSub.subscribe('Searches:tweet-data-loaded', (event) => {
+  //   console.log('got all tweets')
+  //   this.renderSearchResultsList(event.detail);
+  // });
+  PubSub.subscribe('Searches:happy-tweet-data-loaded', (event) => {
+    console.log('got happy tweets')
+    this.renderSearchResultsList(event.detail);
+  });
+  PubSub.subscribe('Searches:sad-tweet-data-loaded', (event) => {
+    console.log('got sad tweets')
     this.renderSearchResultsList(event.detail);
   });
 };

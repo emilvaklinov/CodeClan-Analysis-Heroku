@@ -7,8 +7,10 @@ const echarts = require('echarts');
 
 document.addEventListener('DOMContentLoaded', () => {
   let url = 'http://localhost:3000/api/inputs';
-  const searches = new Searches(url);
-  searches.getData();
+  const sadSearches = new Searches(url);
+  const happySearches = new Searches(url);
+  sadSearches.getData();
+  happySearches.getData();
 
   const formElement = document.querySelector('#form');
   const formView = new FormView(formElement);
@@ -27,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  const myChart_2 = echarts.init(document.getElementById('chart_2'));
-  const chartView_2 = new ChartView(myChart_2);
+  //const myChart_2 = echarts.init(document.getElementById('chart_2'));
+  //const chartView_2 = new ChartView(myChart_2);
   let testChartData_2 = [80, 150];
   let chartTitle_2 = "likes"
   //chartView_2.renderChart(testChartData_2, chartTitle_2);
@@ -44,7 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   formView.bindEvents();
   listView.bindEvents();
-  searches.bindEvents();
+  
+  happySearches.bindEvents('%20%3A%29'); //'%20%3A%29' - happy
+  sadSearches.bindEvents('%20%3A%28'); // '%20%3A%28' - sad
   mapView.bindEvents();
   chartView.bindEvents();
 })

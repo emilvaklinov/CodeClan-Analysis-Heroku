@@ -47,7 +47,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
       });
 
       // allResults.push(tweets);
-      // console.log("next results = ", data.search_metadata.next_results);
+      console.log("next results = ", data.search_metadata.next_results);
       if (data.search_metadata.next_results && (currentPageNumber < maxPages)) {
         // set nextResults to the value from the metadata
         nextResultsQuery = data.search_metadata.next_results;
@@ -59,7 +59,7 @@ Twitter.prototype.getSinglePageOfResultsFromLast7Days = function (searchTerm, ne
         //const flattenedResults = allResults.flat(0);
 
         this.getCoordsForTweets(allResults).then(() => {
-          // console.log("resolving results")
+          console.log("resolving results")
           resolve(allResults);
         })
 
