@@ -96,15 +96,17 @@ Searches.prototype.deleteSearch = function (listItemId) {
     .catch(console.error);
 }
 
-Searches.prototype.calculator = function (tweetData) {
+Searches.prototype.calculator = function (tweetData) { 
   const totals = {
     retweets: 0,
-    favourites: 0
-  }
+    favourites: 0,
+    totalTweets: tweetData.length
+  };
   tweetData.forEach(tweet => {
     totals.retweets += tweet.retweets;
     totals.favourites += tweet.favourites;
   })
+  console.log(totals)
   return totals;
 }
 module.exports = Searches;

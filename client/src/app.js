@@ -4,6 +4,7 @@ const Searches = require('./models/searches');
 const MapView = require('./views/map_view');
 const ChartView = require('./views/chart_view.js');
 const echarts = require('echarts');
+const TotalsView = require('./views/totals_view')
 
 document.addEventListener('DOMContentLoaded', () => {
   let url = 'http://localhost:3000/api/inputs';
@@ -20,29 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const listView = new ListView(listElement, searchResultsListElement);
   const mapView = new MapView();
 
+  const charts = document.querySelector('#charts')
+  const chartView = new ChartView(charts);
 
-  const myChart_1 = echarts.init(document.getElementById('chart_1'));
-  const chartView_1 = new ChartView(myChart_1);
-  let testChartData_1 = [20, 100];
-  let chartTitle_1 = "retweets"
-  //chartView_1.renderChart(testChartData_1, chartTitle_1);
-
-
-
-  //const myChart_2 = echarts.init(document.getElementById('chart_2'));
-  //const chartView_2 = new ChartView(myChart_2);
-  let testChartData_2 = [80, 150];
-  let chartTitle_2 = "likes"
-  //chartView_2.renderChart(testChartData_2, chartTitle_2);
-
-  // const myChart_3 = echarts.init(document.getElementById('chart_3'));
-  // const chartView_3 = new ChartView(myChart_3);
-  // let testChartData_3 = [80, 150];
-  // let chartTitle_3 = "followers"
-  // chartView_3.renderChart(testChartData_3, chartTitle_3);
-
-
-  const chartView = new ChartView();
+  const totals = document.querySelector('#summary');
+  const totalsView = new TotalsView(totals);
 
   formView.bindEvents();
   listView.bindEvents();
@@ -51,4 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
   sadSearches.bindEvents('%20%3A%28'); // '%20%3A%28' - sad
   mapView.bindEvents();
   chartView.bindEvents();
+  totalsView.bindEvents();
 })

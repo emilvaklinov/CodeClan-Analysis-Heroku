@@ -44,7 +44,9 @@
         </div>
         <div class="content-top-left-text">
           <h2 class="h2">Ever wondered where all those tweets come from?</h2>
-          <p>When you enter a word or phrase above, we use it to gather all the tweets from the last 7 days that mention that word or phrase. <br><br>Since the tweets come from all over the world, we can anaylse their location data and plot on the map exactly where they originated from <br><br>... for research.</p>
+          <p>When you enter a word or phrase above, we use it to gather all the tweets from the last 7 days that
+            mention that word or phrase. <br><br>Since the tweets come from all over the world, we can anaylse their
+            location data and plot on the map exactly where they originated from <br><br>... for research.</p>
         </div>
       </div>
       <div id='map'></div>
@@ -55,13 +57,24 @@
 
   <!-- start of content-middle -->
   <div class="content-middle">
-    <!-- <div id='map'></div> -->
-    <div class="chart-1">
-      <div class="chart" id="chart_1"></div>
+    <div id="sumarry" class="grid-summary">
+      <div id="grid-item-1" class="grid-item title">Tweets total</div>
+      <div id="grid-item-2" class="grid-item title">Retweets total</div>
+      <div id="grid-item-3" class="grid-item title">Followers total</div>
+      <div id="grid-item-4" class="grid-item title">Sentiment</div>
+      <div id="grid-item-5" class="grid-item content"></div>
+      <div id="grid-item-6" class="grid-item content"></div>
+      <div id="grid-item-7" class="grid-item content"></div>
+      <div id="grid-item-8" class="grid-item content">:)</div>
     </div>
+    <div id="charts" class="hidden">
+      <div class="chart chart-1">
+        <div class="chart" id="chart_1"></div>
+      </div>
 
-    <div class="chart-2">
-      <div class="chart" id="chart_2"></div>
+      <div class="chart chart-2">
+        <div class="chart" id="chart_2"></div>
+      </div>
     </div>
   </div>
   <!-- end of content-middle -->

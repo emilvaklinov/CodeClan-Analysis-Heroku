@@ -1,9 +1,10 @@
 var echarts = require('echarts');
 const PubSub = require('../helpers/pub_sub.js');
 
-const ViewChart = function(myChart_x){
+const ViewChart = function(chartHtmlElement){
   this.myChart_1 = null;
   this.myChart_2 = null;
+  this.chartHtmlElement = chartHtmlElement;
 }
 
 
