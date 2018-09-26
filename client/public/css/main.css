@@ -33,21 +33,48 @@ body {
 
 .content-middle {
   grid-area: content-top;
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */
 }
+/* ============================ DATA: */
 
 .grid-summary{
   display: grid;
-  height: 10 rem;
+  width: 60%;
+  margin-left: 2rem;
+  height: 6rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: grey solid 2px;
+  /* padding-right: 10rem; */
 }
 
+.content{
+  font-size: 2rem;
+
+}
 .content-bottom {
   grid-area: content-top;
   display: flex;
   flex-direction: row;
 }
+/* --------------------charts: */
+#charts{
+  margin: 4rem 0 4rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.chart {
+
+  margin:auto;
+  min-height: 30rem;
+  width: 49%;
+}
+
+.chart div{
+  /* display: inline-block; */
+}
+/* ============================ FOOTER: */
 
 .footer {
   grid-area: footer;
@@ -185,18 +212,6 @@ button {
   cursor: pointer;
 }
 
-.chart {
-  text-align: center;
-  display: inline;
-  height: 30rem;
-  width: 30rem;
-  margin: 0px;
-}
-
-.chart div{
-  display: inline-block;
-  margin-right: 5%;
-}
 
 ul#search-results-list {
   color: black;
