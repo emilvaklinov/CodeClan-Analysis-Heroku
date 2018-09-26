@@ -7,11 +7,9 @@ const ListView = function (listElement, searchResultsListElement) {
 
 ListView.prototype.bindEvents = function () {
   PubSub.subscribe('Searches:searches-data-loaded', (event) => {
-    // console.log(event.detail);
     this.render(event.detail);
   })
   PubSub.subscribe('Searches:tweet-data-loaded', (event) => {
-    // console.log('tweet data: ', event.detail);
     this.renderSearchResultsList(event.detail);
   });
 };
@@ -51,6 +49,14 @@ ListView.prototype.createDeleteButton = function (listItemId) {
   deleteButton.addEventListener('click', () => {
     PubSub.publish('ListView:delete-clicked', listItemId);
   })
+
+  const historyButtons = document.querySelectorAll('#list button');
+  const list = document.querySelector('#list');
+  console.log('all delete buttons:', historyButtons);
+  const buttonCount = historyButtons.length;
+  if (buttonCount >= 4) {
+    list.lastChild.remove();
+  };
   return deleteButton
 }
 
