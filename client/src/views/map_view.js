@@ -9,8 +9,10 @@ const geoJsonTest = new GeoJsonTest();
 MapView.prototype.bindEvents = function () {
     this.renderMap();
     PubSub.subscribe('Searches:tweet-coordinates-loaded', (event) => {
+
         // console.log('event', event);
         this.renderMap(event.detail);
+        this.removeLoadingSpinner();
     });
   };
 
@@ -165,6 +167,13 @@ const json = {
         }, 'waterway-label');
     });
 
+}
+
+MapView.prototype.removeLoadingSpinner = function(){
+  const loadingOverlay = document.querySelector('#loading-overlay');
+  const loadingModal = document.querySelector('#loading-modal');
+  loadingOverlay.classList.add('hidden');
+  loadingModal.classList.add('hidden');
 }
 
 module.exports = MapView;

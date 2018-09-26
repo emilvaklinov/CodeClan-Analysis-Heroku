@@ -13,6 +13,7 @@ Searches.prototype.bindEvents = function (sentimentQuery, primary) {
     // todo move the db stuff to another bit
     if (primary) {
       this.postSearch(event.detail);
+      this.renderLoadingSpinner();
     }
 
     this.getSearchResults(event.detail.searchTerm, sentimentQuery);
@@ -116,4 +117,12 @@ Searches.prototype.calculator = function (tweetData) {
   })
   return totals;
 }
+
+Searches.prototype.renderLoadingSpinner = function() {
+  const loadingOverlay = document.querySelector('#loading-overlay');
+  const loadingModal = document.querySelector('#loading-modal');
+  loadingOverlay.classList.remove('hidden');
+  loadingModal.classList.remove('hidden');
+};
+
 module.exports = Searches;
