@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const charts = document.querySelector('#charts')
   const chartView = new ChartView(charts);
 
-  const totals = document.querySelector('#summary');
-  const totalsView = new TotalsView(totals);
+  const positiveTotals = document.querySelector('#summary1');
+  const negativeTotals = document.querySelector('#summary2');
+  const totalsView = new TotalsView(positiveTotals, negativeTotals);
 
   formView.bindEvents();
   listView.bindEvents();

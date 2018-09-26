@@ -1,7 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const TotalsView = function (formElement) {
-  this.formElement = formElement;
+const TotalsView = function (positiveGrid, negativeGrid) {
+  this.positiveGrid = positiveGrid;
+  this.negativeGrid = negativeGrid;
   this.happyTweets = 0;
   this.sadTweets = 0;
   this.sadRetweets = 0;
@@ -12,37 +13,38 @@ const TotalsView = function (formElement) {
 
 TotalsView.prototype.bindEvents = function () {
     PubSub.subscribe('Searches:happy-totals-calulated', (event) => {
-        this.happyTweets = event.detail.totalTweets;
+        //this.happyTweets = event.detail.totalTweets;
         this.happyRetweets = event.detail.retweets;
         this.happyFavourites = event.detail.favourites;
 
         this.renderTotals()
-        this.formElement.classList.remove('hidden');
+        this.positiveGrid.classList.remove('hidden');
 
     })
     PubSub.subscribe('Searches:sad-totals-calulated', (event) => {
-        this.sadTweets = event.detail.totalTweets;
+        //this.sadTweets = event.detail.totalTweets;
         this.sadRetweets = event.detail.retweets;
         this.sadFavourites = event.detail.favourites;
 
         this.renderTotals()
-        this.formElement.classList.remove('hidden');
+        this.negativeGrid.classList.remove('hidden');
     })  
 }
 
 TotalsView.prototype.renderTotals = function () {
     const firstContentElement = document.querySelector('#grid-item-5');
-    firstContentElement.textContent = this.sadTweets+this.happyTweets;
+    firstContentElement.textContent = this.happyRetweets;
 
     const secondContentElement = document.querySelector('#grid-item-6');
-    secondContentElement.textContent = this.sadRetweets+this.happyRetweets;
+    secondContentElement.textContent = this.sadRetweets;
 
     const thirdContentElement = document.querySelector('#grid-item-7');
-    thirdContentElement.textContent = this.sadFavourites+this.happyFavourites;
+    thirdContentElement.textContent = this.happyFavourites;
 
     const fourthContentElement = document.querySelector('#grid-item-8');
-    const sentiment = this.determineSentiment();
-    fourthContentElement.textContent = sentiment;
+    fourthContentElement.textContent = this.sadFavourites;
+    //const sentiment = this.determineSentiment();
+    //fourthContentElement.textContent = sentiment;
 }
 
 TotalsView.prototype.determineSentiment = function() {

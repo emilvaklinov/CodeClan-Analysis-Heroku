@@ -15,14 +15,14 @@ ListView.prototype.bindEvents = function () {
   //   console.log('got all tweets')
   //   this.renderSearchResultsList(event.detail);
   // });
-  PubSub.subscribe('Searches:happy-tweet-data-loaded', (event) => {
-    console.log('got happy tweets')
-    this.renderSearchResultsList(event.detail);
-  });
-  PubSub.subscribe('Searches:sad-tweet-data-loaded', (event) => {
-    console.log('got sad tweets')
-    this.renderSearchResultsList(event.detail);
-  });
+  // PubSub.subscribe('Searches:happy-tweet-data-loaded', (event) => {
+  //   console.log('got happy tweets')
+  //   this.renderSearchResultsList(event.detail);
+  // });
+  // PubSub.subscribe('Searches:sad-tweet-data-loaded', (event) => {
+  //   console.log('got sad tweets')
+  //   this.renderSearchResultsList(event.detail);
+  // });
 };
 
 ListView.prototype.renderSearchResultsList = function (searchResults) {

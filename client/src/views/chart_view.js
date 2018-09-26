@@ -57,17 +57,33 @@ ViewChart.prototype.bindEvents = function () {
 
 ViewChart.prototype.renderChart = function (chartData_positive, chartData_negative, title, chart_x) {
   chart_x.setOption({
-    title: {
-      text: title
+    // title: {
+    //   text: title
+    // },
+    grid: {
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0
     },
     tooltip: {},
     series: [{
-      radius: '50%',
+      radius: '70%',
       type: 'pie',
       data: [
         { value: chartData_positive, name: `positive: ${chartData_positive}` },
         { value: chartData_negative, name: `negative: ${chartData_negative}` },
-      ]
+      ],
+      itemStyle: {
+        normal: {
+          label: {
+            show: false
+          },
+          labelLine: {
+            show: false
+          }
+        }
+      }
     }]
   });
 }

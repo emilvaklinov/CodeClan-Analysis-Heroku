@@ -33,18 +33,47 @@ body {
 
 .content-middle {
   grid-area: content-top;
-  /* display: flex; */
-  /* flex-direction: row; */
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#charts {
+  margin: 0px;
+  padding: 0px;
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.chart {
+  height: 10rem;;
+  min-width: 50%;
+  /* //width: 49%; */
 }
 /* ============================ DATA: */
 
-.grid-summary{
+.grid-summary-retweets{
   display: grid;
-  width: 60%;
-  margin-left: 2rem;
+  width: 30%;
+  margin-left: 0rem;
+  margin-right: 2rem;
   height: 6rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   border-bottom: grey solid 2px;
+  text-align: center;
+  /* padding-right: 10rem; */
+}
+
+.grid-summary-favourites{
+  display: grid;
+  width: 30%;
+  margin-left: 0rem;
+  margin-right: 2rem;
+  height: 6rem;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: grey solid 2px;
+  text-align: center;
   /* padding-right: 10rem; */
 }
 
@@ -63,17 +92,6 @@ body {
   display: flex;
   flex-direction: row;
 }
-
-.chart {
-  margin:auto;
-  min-height: 30rem;
-  width: 49%;
-}
-
-.chart div{
-  /* display: inline-block; */
-}
-/* ============================ FOOTER: */
 
 .footer {
   grid-area: footer;
@@ -183,21 +201,6 @@ h2 {
   font-weight: normal;
 }
 
-.chart-1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.chart-2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* div.chart-1, div.chart-2 {
-  padding-left: 5%;
-} */
 .navbar h2 {
   margin-top:1.7rem;
   margin-right: 6rem;
