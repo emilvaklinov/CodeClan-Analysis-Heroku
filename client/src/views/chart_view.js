@@ -1,42 +1,25 @@
 var echarts = require('echarts');
 const PubSub = require('../helpers/pub_sub.js');
 
-const ViewChart = function(){
+const ViewChart = function(myChart_x){
   this.myChart_1 = null;
   this.myChart_2 = null;
 }
 
-ViewChart.prototype.bindEvents = function(){
-  PubSub.subscribe('Searches:totals-calulated', (event) =>{
-    this.renderChartRetweets(event.detail.retweets, event.detail.retweets);
-    this.renderChartFavourites(event.detail.favourites, event.detail.favourites);
+ViewChart.prototype.bindEvents = function () {
+  PubSub.subscribe('Searches:totals-calulated', (event) => {
+    this.myChart_1 = echarts.init(document.getElementById('chart_1'))
+    this.myChart_2 = echarts.init(document.getElementById('chart_2'))
+    this.renderChart(event.detail.retweets, event.detail.retweets, 'retweets', this.myChart_1);
+    this.renderChart(event.detail.favourites, event.detail.favourites, 'favourites', this.myChart_2);
   })
 }
 
-ViewChart.prototype.renderChartRetweets = function (chartData_positive, chartData_negative){
-  this.myChart_1 = echarts.init(document.getElementById('chart_1'))
-  this.myChart_1.setOption({
-    title: {
-      text: 'retweets'
-    },
 
-    tooltip: {},
-    series: [{
-      radius: '50%',
-      type: 'pie',
-      data:[
-        { value: chartData_positive, name: `positive: ${chartData_positive}`},
-        { value: chartData_negative, name: `negative: ${chartData_negative}`},
-      ]
-    }]
-  });
-}
-
-ViewChart.prototype.renderChartFavourites = function (chartData_positive, chartData_negative) {
-  this.myChart_1 = echarts.init(document.getElementById('chart_2'))
-  this.myChart_1.setOption({
+ViewChart.prototype.renderChart = function (chartData_positive, chartData_negative, title, chart_x) {
+  chart_x.setOption({
     title: {
-      text: 'favourites'
+      text: title
     },
     tooltip: {},
     series: [{
@@ -49,10 +32,4 @@ ViewChart.prototype.renderChartFavourites = function (chartData_positive, chartD
     }]
   });
 }
-
-
-
-
-
-
 module.exports = ViewChart;
