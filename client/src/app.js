@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   formView.bindEvents();
   listView.bindEvents();
   
-  happySearches.bindEvents('%20%3A%29'); //'%20%3A%29' - happy
+  happySearches.bindEvents('%20%3A%29', true); //'%20%3A%29' - happy
   sadSearches.bindEvents('%20%3A%28'); // '%20%3A%28' - sad
   mapView.bindEvents();
   chartView.bindEvents();

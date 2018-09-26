@@ -7,9 +7,14 @@ const Searches = function (url) {
   this.APIrequest = new Request('http://localhost:3000/api/search-results');
 }
 
-Searches.prototype.bindEvents = function (sentimentQuery) {
+Searches.prototype.bindEvents = function (sentimentQuery, primary) { 
   PubSub.subscribe('FormView:search-term-submitted', (event) => {
-    this.postSearch(event.detail);
+    
+    // todo move the db stuff to another bit
+    if (primary) {
+      this.postSearch(event.detail);
+    }
+
     this.getSearchResults(event.detail.searchTerm, sentimentQuery);
     // console.log(event.detail.searchTerm);
   })
@@ -53,6 +58,9 @@ Searches.prototype.getSearchResults = function (searchTerm, sentimentQuery) {
       tweetChannel = 'Searches:sad-tweet-data-loaded';
       calculationChannel = 'Searches:sad-totals-calulated';
     }
+
+console.log("searching for " + query);
+
   this.APIrequest.get(query)
       .then((tweets) => {
         const totals = this.calculator(tweets);

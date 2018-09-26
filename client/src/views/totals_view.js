@@ -2,6 +2,7 @@ const PubSub = require('../helpers/pub_sub.js');
 
 const TotalsView = function (formElement) {
   this.formElement = formElement;
+  this.happyTweets = 0;
   this.sadTweets = 0;
   this.sadRetweets = 0;
   this.happyRetweets = 0;
@@ -11,8 +12,13 @@ const TotalsView = function (formElement) {
 
 TotalsView.prototype.bindEvents = function () {
     PubSub.subscribe('Searches:happy-totals-calulated', (event) => {
+        this.happyTweets = event.detail.totalTweets;
         this.happyRetweets = event.detail.retweets;
         this.happyFavourites = event.detail.favourites;
+
+        this.renderTotals()
+        this.formElement.classList.remove('hidden');
+
     })
     PubSub.subscribe('Searches:sad-totals-calulated', (event) => {
         this.sadTweets = event.detail.totalTweets;
@@ -26,7 +32,7 @@ TotalsView.prototype.bindEvents = function () {
 
 TotalsView.prototype.renderTotals = function () {
     const firstContentElement = document.querySelector('#grid-item-5');
-    firstContentElement.textContent = this.sadTweets;
+    firstContentElement.textContent = this.sadTweets+this.happyTweets;
 
     const secondContentElement = document.querySelector('#grid-item-6');
     secondContentElement.textContent = this.sadRetweets+this.happyRetweets;
