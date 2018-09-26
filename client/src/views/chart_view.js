@@ -11,11 +11,14 @@ const ViewChart = function(chartHtmlElement){
 
 ViewChart.prototype.bindEvents = function () {
   
-  this.myChart_1 = echarts.init(document.getElementById('chart_1'))
-  this.myChart_2 = echarts.init(document.getElementById('chart_2'))
+
   this.retweetsValues = [];
   this.favouritesValues = [];
   PubSub.subscribe('Searches:happy-totals-calulated', (event) => {
+    this.chartHtmlElement.classList.remove('hidden')
+    this.chartHtmlElement.classList.add('showFlex')
+    this.myChart_1 = echarts.init(document.getElementById('chart_1'))
+    this.myChart_2 = echarts.init(document.getElementById('chart_2'))
     this.retweetsValues.push(event.detail.retweets);
     console.log('happy retweets from event: ', event.detail.retweets);
     if (this.retweetsValues.length === 2){

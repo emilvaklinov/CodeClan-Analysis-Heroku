@@ -58,14 +58,13 @@ body {
   flex-direction: row;
 }
 /* --------------------charts: */
-#charts{
+.showFlex{
   margin: 4rem 0 4rem;
   display: flex;
   flex-direction: row;
 }
 
 .chart {
-
   margin:auto;
   min-height: 30rem;
   width: 49%;
