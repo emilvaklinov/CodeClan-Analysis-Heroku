@@ -261,7 +261,14 @@ font-size: 18px;
   font-size: 28px;
   font-weight: normal;
 }
-
+.h3 {
+  font-size: 18px;
+  font-weight: normal;
+}
+h2.h3{
+  font-size: 22px;
+  font-weight: normal;
+}
 .navbar h2 {
   margin-top:1.7rem;
   margin-right: 4rem;

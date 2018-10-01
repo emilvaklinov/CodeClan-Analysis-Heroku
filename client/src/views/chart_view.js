@@ -64,7 +64,7 @@ ViewChart.prototype.renderChart = function (chartData_positive, chartData_negati
     // title: {
     //   text: title
     // },
-    color: ['#c4120f','#17a7ef'],
+    color: ['#17a7ef','#c4120f'],
     grid: {
       left: 0,
       top: 0,
@@ -76,8 +76,8 @@ ViewChart.prototype.renderChart = function (chartData_positive, chartData_negati
       radius: '70%',
       type: 'pie',
       data: [
-        { value: chartData_positive, name: `positive: ${chartData_positive}` },
         { value: chartData_negative, name: `negative: ${chartData_negative}` },
+        { value: chartData_positive, name: `positive: ${chartData_positive}` },
       ],
       itemStyle: {
         normal: {
