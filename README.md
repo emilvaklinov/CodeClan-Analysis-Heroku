@@ -1,4 +1,4 @@
-# CodeClan Collaborative Projekt - Tweet analysis app
+# CodeClan Collaborative Project - Tweet analysis app
 
 We’ve been approached by an organisation that would like the ability to find out tweet frequency or sentiment by location. We will build a Minimum Viable Product that will retrieve data from Twitter and display it to the user, then explore ways to analyze and display meaningful data in an interesting way.
 
