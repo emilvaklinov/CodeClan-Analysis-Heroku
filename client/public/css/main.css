@@ -21,7 +21,7 @@ body {
 .navbar {
   grid-area: header;
   height: 5rem;
-  background-color: #c4114b;
+  background-color: #c4120f;
   text-align: right;
 }
 
@@ -33,7 +33,7 @@ body {
 
 .content-middle {
   grid-area: content-top;
-  display: flex; 
+  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
@@ -41,25 +41,25 @@ body {
 #charts {
   margin: 0px;
   padding: 0px;
-  display: flex; 
+  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
 #grid-item-5{
-  color: #c4114b;
+  color: #c4120f;
 }
 
 #grid-item-6{
-  color: #15A5CC;
+  color: #1ae7f2;
 }
 
 #grid-item-7{
-  color: #c4114b;
+  color: #c4120f;
 }
 
 #grid-item-8{
-  color: #15A5CC;
+  color: #1ae7f2;
 }
 
 .chart {
@@ -219,7 +219,7 @@ button#submit:hover{
   width: 62.2%;
   z-index: 99;
   background-color: #58595b;
-  justify-self: flex-end; 
+  justify-self: flex-end;
   opacity: 0.7;
 }
 
@@ -243,7 +243,7 @@ button#submit:hover{
   height: 6rem;
   width: 20%;
   z-index: 999;
-  justify-self: flex-end; 
+  justify-self: flex-end;
   opacity: 1;
   color: black;
 }
@@ -264,9 +264,9 @@ button#submit:hover{
 
 .navbar h2 {
   margin-top:1.7rem;
-  margin-right: 6rem;
+  margin-right: 4rem;
   font-family: 'Noto Serif', serif;
-  font-size: 22px;
+  font-size: 27px;
   font-weight: 500;
   color: white;
 }
@@ -293,5 +293,5 @@ ul#search-results-list li {
 
 
 .hidden {
-  display: none; 
+  display: none;
 }

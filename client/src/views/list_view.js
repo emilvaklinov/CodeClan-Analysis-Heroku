@@ -27,7 +27,7 @@ ListView.prototype.bindEvents = function () {
     eventCounter += 1;
     allTweets = allTweets.concat(event.detail, allTweets);
     if (eventCounter === 2) {
-      this.renderTop5Tweets(allTweets);
+      this.renderTop10Tweets(allTweets);
     }
     console.log('got happy tweets')
     //this.renderSearchResultsList(event.detail);
@@ -36,7 +36,7 @@ ListView.prototype.bindEvents = function () {
     eventCounter += 1;
     allTweets = allTweets.concat(event.detail, allTweets);
     if (eventCounter === 2) {
-      this.renderTop5Tweets(allTweets);
+      this.renderTop10Tweets(allTweets);
     }
     console.log('got sad tweets')
     //this.renderSearchResultsList(event.detail);
@@ -98,11 +98,11 @@ ListView.prototype.createDeleteButton = function (listItemId) {
   return deleteButton
 }
 
-ListView.prototype.renderTop5Tweets = function (tweets) {
+ListView.prototype.renderTop10Tweets = function (tweets) {
   tweets.sort((a, b) => {
     return b.retweets - a.retweets;
   });
-  const top5Tweets = tweets.slice(0, 5);
+  const top5Tweets = tweets.slice(0, 10);
   const container = document.querySelector('#result-container');
   container.classList.remove('hidden');
   this.searchResultsListElement.innerHTML = "";
