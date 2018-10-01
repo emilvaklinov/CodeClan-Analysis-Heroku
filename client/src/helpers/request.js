@@ -19,7 +19,7 @@ Request.prototype.post = function (payload) {
     body: JSON.stringify(payload),
     headers: { 'Content-Type': 'application/json' }
   })
-    .then((response) => response.json());
+  .then((response) => response.json());
 };
 
 // We have no use for this with current design
@@ -37,7 +37,7 @@ Request.prototype.delete = function (id) {
   return fetch(`${this.url}/${id}`, {
     method: 'DELETE'
   })
-    .then((response) => response.json());
+  .then((response) => response.json());
 };
 
 

@@ -51,7 +51,7 @@ body {
 }
 
 #grid-item-6{
-  color: #1ae7f2;
+  color: #17a7ef;
 }
 
 #grid-item-7{
@@ -59,7 +59,7 @@ body {
 }
 
 #grid-item-8{
-  color: #1ae7f2;
+  color: #17a7ef;
 }
 
 .chart {
@@ -112,7 +112,7 @@ body {
 .footer {
   grid-area: footer;
   height: 5rem;
-  background-color: #58595b;
+  background-color: #b5b6b7;
 }
 
 .content-top-left {
@@ -189,8 +189,8 @@ button#submit {
 }
 
 button#submit:hover{
- background-color: #15A5CC;
- color: white;
+  background-color: #15A5CC;
+  color: white;
 }
 
 .search-history {
@@ -254,7 +254,7 @@ button#submit:hover{
 }
 
 /* h2 {
-  font-size: 18px;
+font-size: 18px;
 } */
 
 .h2 {

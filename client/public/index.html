@@ -6,21 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./js/bundle.js"></script>
   <script>window.twttr = (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
+    var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
 
-      t._e = [];
-      t.ready = function (f) {
-        t._e.push(f);
-      };
+    t._e = [];
+    t.ready = function (f) {
+      t._e.push(f);
+    };
 
-      return t;
-    }(document, "script", "twitter-wjs"));</script>
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
   <link rel="stylesheet" href="./css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
@@ -63,48 +63,48 @@
           <p>When you enter a word or phrase above, we use it to gather the last 3000 tweets in realtime that mention that
             word or phrase. <br><br>Since the tweets come from all over the world, we can anaylse their location data and
             plot on the map exactly where they originated from. <br><br>... for research purposes.</p>
+          </div>
         </div>
+        <div id="loading-modal" class="hidden">
+          <div class="modal-content"><span>Fetching data from Twitter...</span></div>
+        </div>
+        <div id="loading-overlay" class="hidden"></div>
+        <div id='map'></div>
+
       </div>
-      <div id="loading-modal" class="hidden">
-        <div class="modal-content"><span>Fetching data from Twitter...</span></div>
+      <!-- end of content-top -->
+    </div>
+
+    <!-- start of content-middle -->
+    <div class="content-middle">
+      <div id="summary1" class="grid-summary-retweets hidden">
+        <div id="grid-item-1" class="grid-item title">Positive retweets</div>
+        <div id="grid-item-2" class="grid-item title">Negative retweets</div>
+        <div id="grid-item-5" class="grid-item content"></div>
+        <div id="grid-item-6" class="grid-item content"></div>
       </div>
-      <div id="loading-overlay" class="hidden"></div>
-      <div id='map'></div>
 
+      <div id="summary2" class="grid-summary-favourites hidden">
+        <div id="grid-item-3" class="grid-item title">Positive Likes</div>
+        <div id="grid-item-4" class="grid-item title">Negative Likes</div>
+        <div id="grid-item-7" class="grid-item content"></div>
+        <div id="grid-item-8" class="grid-item content"></div>
+      </div>
     </div>
-    <!-- end of content-top -->
-  </div>
-
-  <!-- start of content-middle -->
-  <div class="content-middle">
-    <div id="summary1" class="grid-summary-retweets hidden">
-      <div id="grid-item-1" class="grid-item title">Positive retweets</div>
-      <div id="grid-item-2" class="grid-item title">Negative retweets</div>
-      <div id="grid-item-5" class="grid-item content"></div>
-      <div id="grid-item-6" class="grid-item content"></div>
+    <!-- end of content-middle -->
+    <div id="charts" class="hidden">
+      <div class="" id="chart_1"></div>
+      <div class="" id="chart_2"></div>
     </div>
-
-    <div id="summary2" class="grid-summary-favourites hidden">
-      <div id="grid-item-3" class="grid-item title">Positive Likes</div>
-      <div id="grid-item-4" class="grid-item title">Negative Likes</div>
-      <div id="grid-item-7" class="grid-item content"></div>
-      <div id="grid-item-8" class="grid-item content"></div>
+    <!-- start of content-bottom -->
+    <div class="content-bottom hidden" id="result-container">
+      <h2>Top 10 tweets</h2>
+      <div>
+        <ul id="search-results-list">
+        </ul>
+      </div>
     </div>
-  </div>
-  <!-- end of content-middle -->
-  <div id="charts" class="hidden">
-    <div class="" id="chart_1"></div>
-    <div class="" id="chart_2"></div>
-  </div>
-  <!-- start of content-bottom -->
-  <div class="content-bottom hidden" id="result-container">
-    <h2>Top 10 tweets</h2>
-    <div>
-      <ul id="search-results-list">
-      </ul>
-    </div>
-  </div>
-  <!-- end of content-bottom -->
+    <!-- end of content-bottom -->
   </div>
   <!-- start of footer -->
   <div class="footer">
