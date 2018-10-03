@@ -5,7 +5,7 @@ const Searches = function (url) {
   this.url = url;
   this.request = new Request(this.url);
   this.APIrequest = new Request('http://localhost:3000/api/search-results');
-  // this.APIrequest = new Request('');
+  // this.APIrequest = new Request('https://twittanalytica.herokuapp.com');
 }
 
 Searches.prototype.bindEvents = function (sentimentQuery, primary) {
