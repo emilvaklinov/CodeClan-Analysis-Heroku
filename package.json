@@ -7,7 +7,8 @@
     "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server:dev": "nodemon server/server.js",
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
   "keywords": [],
   "author": "",
@@ -25,5 +26,8 @@
     "mongodb": "^3.1.0",
     "node-geocoder": "^3.22.0",
     "twit": "2.2.11"
+  },
+  "engines": {
+    "node": "10.7.0"
   }
 }
