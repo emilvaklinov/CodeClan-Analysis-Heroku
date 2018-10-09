@@ -13,7 +13,9 @@ app.use(parser.json());
 const twitter = new Twitter();
 const geocoder = new GeocoderHelper();
 
-MongoClient.connect('mongodb://localhost:27017')
+// MongoClient.connect('mongodb://localhost:27017')
+MongoClient.connect('mongodb://trakietsa:Windows12345@ds125683.mlab.com:25683/project_tweetdb')
+
   .then((client) => {
     const db = client.db('project_tweetdb');
     const nameOfCollection = db.collection('saved_inputs');
