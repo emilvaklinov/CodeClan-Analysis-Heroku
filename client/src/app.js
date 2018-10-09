@@ -7,7 +7,7 @@ const echarts = require('echarts');
 const TotalsView = require('./views/totals_view')
 
 document.addEventListener('DOMContentLoaded', () => {
-  let url = 'http://localhost:3000/api/inputs';
+  let url = 'https://emil-twitter-analysis.herokuapp.com/api/inputs';
   const sadSearches = new Searches(url);
   const happySearches = new Searches(url);
   sadSearches.getData();
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   formView.bindEvents();
   listView.bindEvents();
-  
+
   happySearches.bindEvents('%20%3A%29', true); //'%20%3A%29' - happy
   sadSearches.bindEvents('%20%3A%28'); // '%20%3A%28' - sad
   mapView.bindEvents();

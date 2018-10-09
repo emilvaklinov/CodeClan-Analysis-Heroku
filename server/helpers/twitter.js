@@ -92,7 +92,8 @@ Twitter.prototype.makeSearchTweetsRequestToTwitterWithSearchTerm = function (sea
 
 let locationCollection = null;
 
-MongoClient.connect('mongodb://localhost:27017')
+// MongoClient.connect('mongodb://localhost:27017')
+MongoClient.connect('mongodb://trakietsa:Windows12345@ds125683.mlab.com:25683/project_tweetdb')
   .then((client) => {
     const db = client.db('project_tweetdb');
     locationCollection = db.collection('locations_coords');
